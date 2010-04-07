@@ -21,8 +21,10 @@ if (is_admin()) {
   add_action('wp_head', 'scfw_add_css');
   wp_enqueue_script('easing', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.easing.js", false, '1.3', true);
   wp_enqueue_script('sexycycle', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.sexyCycle-packed.js", false, '0.3', true);
-  wp_deregister_script('jquery');
-  wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
+  if (!get_settings('scfw_jquery')) {
+    wp_deregister_script('jquery');
+    wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
+  }
   add_filter('post_gallery', 'scfw_gallery_shortcode', 10, 2);
 }
 

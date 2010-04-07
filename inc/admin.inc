@@ -13,11 +13,11 @@ $scfw_options = array(
     "type" => "title"
   ),
   array(
-    "value" => "<a href=\"http://suprb.com/apps/sexyCycle/\">SexyCycle jQuery plugin</a> created by <a href=\"http://suprb.com/\">Andreas Pihlstr&ouml;m</a>.<br />SexyCycle for WordPress created by <a href=\"http://unwise.se/\">Linus Lundahl</a>.<br /><br />Remember that these settings affects <strong>all galleries</strong> in <strong>all posts and pages</strong>, single gallery settings are not available.",
+    "value" => "<a href=\"http://suprb.com/apps/sexyCycle/\">SexyCycle jQuery plugin</a> created by <a href=\"http://suprb.com/\">Andreas Pihlstr&ouml;m</a>.<br />SexyCycle for WordPress created by <a href=\"http://unwise.se/\">Linus Lundahl</a>.<br /><br />These settings affects <strong>all galleries</strong> in <strong>all posts and pages</strong>, single gallery settings are not available.",
     "type" => "paragraph"
   ),
   array(
-    "type" => 'start'
+    "type" => 'start-table'
   ),
   array(
     "name" => "Animation",
@@ -81,13 +81,24 @@ $scfw_options = array(
   ),
   array(
     "name" => "Disable cycling",
-    "desc" => "Check this box to prevent the gallery from cycling.",
+    "desc" => "Prevent the gallery from cycling",
     "id" => $scfw_shortname."_cycle",
     "type" => "checkbox",
     "std" => 0
   ),
   array(
-    'type' => 'end'
+    "name" => "Disable jQuery",
+    "desc" => "Don't load latest version of jQuery <strong>*</strong>",
+    "id" => $scfw_shortname."_jquery",
+    "type" => "checkbox",
+    "std" => 0
+  ),
+  array(
+    'type' => 'end-table'
+  ),
+  array(
+    'value' => '<small><strong>*</strong> SexyCycle depends on jQuery 1.4+ and if you disable it from loading here, make sure it\'s loaded elsewhere.</small>',
+    'type' => 'paragraph'
   )
 );
 
@@ -128,13 +139,13 @@ function scfw_options() {
 <?php foreach ($scfw_options as $value) {
 switch ( $value['type'] ) {
 
-case "start":
+case "start-table":
 ?>
 <table class="form-table">
 <?php
 break;
 
-case "end";
+case "end-table";
 ?>
 </table>
 <?php
