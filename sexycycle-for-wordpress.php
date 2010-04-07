@@ -2,7 +2,7 @@
 
 /* 
 Plugin Name: SecyCycle for WordPress
-Plugin URI: http://unwise.se/stash/sexycycle-for-wordpress
+Plugin URI: http://github.com/linuslundahl/SexyCycle-for-WordPress/
 Description: Uses SecyCycle plugin for jQuery to cycle through gallery images. (SexyCycle created by <a href="http://www.suprb.com/">Andreas Pihlström</a>)
 Version: 0.1-dev
 Author: Linus Lundahl
