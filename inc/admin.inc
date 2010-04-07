@@ -9,18 +9,18 @@ $scfw_themename = "SexyCycle for WordPress";
 $scfw_shortname = "scfw";
 $scfw_options = array(
   array(
-    "name" => "Settings for SexyCycle galleries",
-    "type" => "title"
-  ),
-  array(
     "value" => "<a href=\"http://suprb.com/apps/sexyCycle/\">SexyCycle jQuery plugin</a> created by <a href=\"http://suprb.com/\">Andreas Pihlstr&ouml;m</a>.<br />SexyCycle for WordPress created by <a href=\"http://unwise.se/\">Linus Lundahl</a>.<br /><br />These settings affects <strong>all galleries</strong> in <strong>all posts and pages</strong>, single gallery settings are not available.",
     "type" => "paragraph"
+  ),
+  array(
+    "name" => "Settings",
+    "type" => "title"
   ),
   array(
     "type" => 'start-table'
   ),
   array(
-    "name" => "Animation",
+    "name" => "jQuery Easing animation",
     "desc" => "Slide animation that should be used.",
     "id" => $scfw_shortname."_animation",
     "type" => "select",
@@ -62,7 +62,7 @@ $scfw_options = array(
   ),
   array(
     "name" => "Speed",
-    "desc" => "The speed of the animation.",
+    "desc" => "The speed of the animation. (milliseconds)",
     "id" => $scfw_shortname."_speed",
     "type" => "textfield",
     "size" => 4
