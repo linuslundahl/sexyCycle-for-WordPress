@@ -13,3 +13,6 @@ li.sexyCycle-content  { margin: 0; padding: 0; }
 .sexyCycle { position: relative; overflow: hidden; }
 .sexyCycle-wrap { position: relative; width: 99999px; }
 .sexyCycle-content { width: 99999; position: absolute; overflow: hidden; }
+.sexyCycle-content ul,
+.sexyCycle-content li { margin: 0 !important; padding: 0 !important; list-style-type: none; }
+.cursor { cursor: pointer; }
