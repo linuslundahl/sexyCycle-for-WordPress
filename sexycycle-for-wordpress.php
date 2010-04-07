@@ -1,9 +1,9 @@
 <?php
 
 /* 
-Plugin Name: SecyCycle for WordPress
+Plugin Name: SexyCycle for WordPress
 Plugin URI: http://github.com/linuslundahl/SexyCycle-for-WordPress/
-Description: Uses SecyCycle plugin for jQuery to cycle through gallery images. (SexyCycle created by <a href="http://www.suprb.com/">Andreas Pihlström</a>)
+Description: Uses SexyCycle plugin for jQuery to cycle through gallery images. (SexyCycle created by <a href="http://www.suprb.com/">Andreas Pihlström</a>)
 Version: 0.1-dev
 Author: Linus Lundahl
 Author URI: http://unwise.se
@@ -21,6 +21,8 @@ if (is_admin()) {
   add_action('wp_head', 'scfw_add_css');
   wp_enqueue_script('easing', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.easing.js", false, '1.3', true);
   wp_enqueue_script('sexycycle', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.sexyCycle-packed.js", false, '0.3', true);
+  wp_deregister_script('jquery');
+  wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
   add_filter('post_gallery', 'scfw_gallery_shortcode', 10, 2);
 }
 
@@ -99,7 +101,7 @@ function scfw_gallery_shortcode( $output, $attr ) {
     $output .= "  </{$itemtag}>\n";
     $output .= "  </div>\n";
     if ($controls) {
-      $output .= "	<div class=\"controllers\"><span class=\"prev$id\">Prev</span><span class=\"next$id\">Next</span></div>";
+      $output .= "	<div class=\"controllers\"><span class=\"prev$id cursor\">Prev</span><span class=\"next$id cursor\">Next</span></div>";
     }
     $output .= "</div>\n";
   }
