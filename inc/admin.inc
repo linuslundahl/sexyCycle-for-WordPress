@@ -192,7 +192,7 @@ case 'select':
   <tr valign="top">
     <th scope="row"><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
     <td>
-      <select style="width:240px;" name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>">
+      <select style="width:140px;" name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>">
 <?php foreach ($value['options'] as $key => $item) { ?>
 <?php
   $selected = '';
