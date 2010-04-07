@@ -13,7 +13,7 @@ $scfw_options = array(
     "type" => "title"
   ),
   array(
-    "value" => "SexyCycle jQuery plugin created by <a href=\"http://www.suprb.com/\">Andreas Pihlstr&ouml;m</a>.<br />SexyCycle for WordPress created by <a href=\"http://unwise.se/\">Linus Lundahl</a>.<br /><br />Remember that these settings affects <strong>all galleries</strong> in <strong>all posts and pages</strong>, single gallery settings are not available.",
+    "value" => "<a href=\"http://suprb.com/apps/sexyCycle/\">SexyCycle jQuery plugin</a> created by <a href=\"http://suprb.com/\">Andreas Pihlstr&ouml;m</a>.<br />SexyCycle for WordPress created by <a href=\"http://unwise.se/\">Linus Lundahl</a>.<br /><br />Remember that these settings affects <strong>all galleries</strong> in <strong>all posts and pages</strong>, single gallery settings are not available.",
     "type" => "paragraph"
   ),
   array(
