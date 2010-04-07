@@ -91,19 +91,36 @@ function scfw_gallery_shortcode( $output, $attr ) {
     // Add JS for each gallery
     $output = apply_filters('gallery_style', "<script type=\"text/javascript\">$(document).ready(function() { $(\"#box-$id\").sexyCycle($js); });</script>\n");
 
+    // Controls (prev)
+    if ($controls == 'beforeafter') {
+      $output .= "<span id=\"prev-$id\" class=\"prev cursor before\">Prev</span>";
+    }
+
     $output .= "<div class=\"sexyCycle\" id=\"box-$id\">\n";
     $output .= "  <div class=\"sexyCycle-wrap\">\n";
     $output .= "  <{$itemtag} class=\"sexyCycle-content\">\n";
+
+    // Create list items with images
     foreach ( $attachments as $gallery_id => $attachment ) {
       $link = wp_get_attachment_image($gallery_id, $size, false, false);
       $output .= "    <{$icontag}>$link</{$icontag}>\n";
     }
+
     $output .= "  </{$itemtag}>\n";
     $output .= "  </div>\n";
-    if ($controls) {
+
+    // Controls (prev / next)
+    if ($controls == 'under') {
       $output .= "	<div class=\"controllers\"><span id=\"prev-$id\" class=\" prev cursor\">Prev</span><span id=\"next-$id\" class=\"next cursor\">Next</span></div>";
     }
+
     $output .= "</div>\n";
+
+    // Controls (next)
+    if ($controls == 'beforeafter') {
+      $output .= "<span id=\"next-$id\" class=\"next cursor after\">Next</span>";
+    }
+
   }
 
   return $output;

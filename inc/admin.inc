@@ -25,7 +25,6 @@ $scfw_options = array(
     "id" => $scfw_shortname."_animation",
     "type" => "select",
     "options" => array(
-      'none' => 0,
       'easeInQuad' => 'easeInQuad',
       'easeOutQuad' => 'easeOutQuad',
       'easeInOutQuad' => 'easeInOutQuad',
@@ -56,7 +55,10 @@ $scfw_options = array(
       'easeInBounce' => 'easeInBounce',
       'easeOutBounce' => 'easeOutBounce',
       'easeInOutBounce' => 'easeInOutBounce'
-    )
+    ),
+    "std" => array(
+      'easeOutExpo'
+    ),
   ),
   array(
     "name" => "Speed",
@@ -66,10 +68,15 @@ $scfw_options = array(
     "size" => 4
   ),
   array(
-    "name" => "Use controls",
-    "desc" => "Check this box if you would like to add PREV and NEXT buttons.",
+    "name" => "Type of controls",
+    "desc" => "Select if you would like to add PREV and NEXT buttons.",
     "id" => $scfw_shortname."_controls",
-    "type" => "checkbox",
+    "type" => "select",
+    "options" => array(
+      'none' => 0,
+      'Under Image' => 'under',
+      'Before / After image' => 'beforeafter'
+    ),
     "std" => 0
   ),
   array(
@@ -176,7 +183,16 @@ case 'select':
     <td>
       <select style="width:240px;" name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>">
 <?php foreach ($value['options'] as $key => $item) { ?>
-      <option<?php echo " value=\"$item\""; if ((get_settings($value['id']) == $key)) { echo ' selected="selected"'; } ?>><?php echo $key; ?></option>
+<?php
+  $selected = '';
+  $saved = get_settings($value['id']);
+  if ($saved && $saved == $item) {
+    $selected = ' selected="selected"';
+  } elseif (!$saved && $value['std'][0] == $item) {
+    $selected = ' selected="selected"';
+  }
+?>
+      <option<?php echo " value=\"$item\"" . $selected; ?>><?php echo $key; ?></option>
 <?php } ?>
       </select>
       <span class="description"><?php echo $value['desc']; ?></span>
