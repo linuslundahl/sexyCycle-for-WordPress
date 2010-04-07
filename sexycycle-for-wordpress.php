@@ -79,7 +79,7 @@ function scfw_gallery_shortcode( $output, $attr ) {
         }
 
         if ($controls) {
-          $js .= "next: '.next$id',prev: '.prev$id',";
+          $js .= "next: '#next-$id',prev: '#prev-$id',";
         }
 
         if ($cycle) {
@@ -101,7 +101,7 @@ function scfw_gallery_shortcode( $output, $attr ) {
     $output .= "  </{$itemtag}>\n";
     $output .= "  </div>\n";
     if ($controls) {
-      $output .= "	<div class=\"controllers\"><span class=\"prev$id cursor\">Prev</span><span class=\"next$id cursor\">Next</span></div>";
+      $output .= "	<div class=\"controllers\"><span id=\"prev-$id\" class=\" prev cursor\">Prev</span><span id=\"next-$id\" class=\"next cursor\">Next</span></div>";
     }
     $output .= "</div>\n";
   }
