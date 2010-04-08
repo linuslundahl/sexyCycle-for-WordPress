@@ -11,6 +11,8 @@ Author URI: http://unwise.se
 
 require_once(dirname(__FILE__).'/inc/admin.inc');
 
+$scfw_settings = get_settings('scfw_settings');
+
 if (!defined('SCFW_PLUGIN_BASENAME')) {
   define('SCFW_PLUGIN_BASENAME', plugin_basename(__FILE__));
 }
@@ -21,7 +23,7 @@ if (is_admin()) {
   add_action('wp_head', 'scfw_add_css');
   wp_enqueue_script('easing', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.easing.js", false, '1.3', true);
   wp_enqueue_script('sexycycle', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.sexyCycle-packed.js", false, '0.3', true);
-  if (!get_settings('scfw_jquery')) {
+  if (!$scfw_settings['scfw_jquery']) {
     wp_deregister_script('jquery');
     wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
   }
@@ -34,8 +36,8 @@ function scfw_add_css() {
 }
 
 // Custom gallery output
-function scfw_gallery_shortcode( $output, $attr ) {
-  global $post, $wp_locale;
+function scfw_gallery_shortcode($output, $attr) {
+  global $post, $wp_locale, $scfw_settings;
 
   extract(shortcode_atts(array(
     'order'      => 'ASC',
@@ -65,36 +67,31 @@ function scfw_gallery_shortcode( $output, $attr ) {
     $itemtag = tag_escape($itemtag);
 
     // Build JS settings
-      $animation = get_settings('scfw_animation');
-      $speed = get_settings('scfw_speed');
-      $controls = get_settings('scfw_controls');
-      $cycle = get_settings('scfw_cycle');
-
-      if ($speed || $animation) {
-        $js = "{";
-        if ($speed) {
-          $js .= "speed: '$speed',";
-        }
-
-        if ($animation) {
-          $js .= "easing: '$animation',";
-        }
-
-        if ($controls) {
-          $js .= "next: '#next-$id',prev: '#prev-$id',";
-        }
-
-        if ($cycle) {
-          $js .= "cycle: false,";
-        }
-        $js .= "}";
+    if ($scfw_settings['scfw_speed'] || $scfw_settings['scfw_animation'] || $scfw_settings['scfw_controls'] || $scfw_settings['scfw_cycle']) {
+      $js = "{";
+      if ($scfw_settings['scfw_speed']) {
+        $js .= "speed: " . $scfw_settings['scfw_speed'] . "," ;
       }
+
+      if ($scfw_settings['scfw_animation']) {
+        $js .= "easing: '" . $scfw_settings['scfw_animation'] . "',";
+      }
+
+      if ($scfw_settings['scfw_controls']) {
+        $js .= "next: '#next-$id',prev: '#prev-$id',";
+      }
+
+      if ($scfw_settings['scfw_cycle']) {
+        $js .= "cycle: false,";
+      }
+      $js .= "}";
+    }
 
     // Add JS for each gallery
     $output = apply_filters('gallery_style', "<script type=\"text/javascript\">$(document).ready(function() { $(\"#box-$id\").sexyCycle($js); });</script>\n");
 
     // Controls (prev)
-    if ($controls == 'beforeafter') {
+    if ($scfw_settings['scfw_controls'] == 'beforeafter') {
       $output .= "<span id=\"prev-$id\" class=\"prev cursor before\">Prev</span>";
     }
 
@@ -112,14 +109,14 @@ function scfw_gallery_shortcode( $output, $attr ) {
     $output .= "  </div>\n";
 
     // Controls (prev / next)
-    if ($controls == 'under') {
+    if ($scfw_settings['scfw_controls'] == 'under') {
       $output .= "	<div class=\"controllers\"><span id=\"prev-$id\" class=\" prev cursor\">Prev</span><span id=\"next-$id\" class=\"next cursor\">Next</span></div>";
     }
 
     $output .= "</div>\n";
 
     // Controls (next)
-    if ($controls == 'beforeafter') {
+    if ($scfw_settings['scfw_controls'] == 'beforeafter') {
       $output .= "<span id=\"next-$id\" class=\"next cursor after\">Next</span>";
     }
 

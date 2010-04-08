@@ -22,7 +22,7 @@ $scfw_options = array(
   array(
     "name" => "jQuery Easing animation",
     "desc" => "Slide animation that should be used.",
-    "id" => $scfw_shortname."_animation",
+    "id" => $scfw_shortname . "_animation",
     "type" => "select",
     "options" => array(
       'easeInQuad' => 'easeInQuad',
@@ -63,14 +63,14 @@ $scfw_options = array(
   array(
     "name" => "Speed",
     "desc" => "The speed of the animation. (milliseconds)",
-    "id" => $scfw_shortname."_speed",
+    "id" => $scfw_shortname . "_speed",
     "type" => "textfield",
     "size" => 4
   ),
   array(
     "name" => "Type of controls",
     "desc" => "Select if you would like to add PREV and NEXT buttons.",
-    "id" => $scfw_shortname."_controls",
+    "id" => $scfw_shortname . "_controls",
     "type" => "select",
     "options" => array(
       'none' => 0,
@@ -82,14 +82,14 @@ $scfw_options = array(
   array(
     "name" => "Disable cycling",
     "desc" => "Prevent the gallery from cycling",
-    "id" => $scfw_shortname."_cycle",
+    "id" => $scfw_shortname . "_cycle",
     "type" => "checkbox",
     "std" => 0
   ),
   array(
     "name" => "Disable jQuery",
     "desc" => "Don't load latest version of jQuery <strong>*</strong>",
-    "id" => $scfw_shortname."_jquery",
+    "id" => $scfw_shortname . "_jquery",
     "type" => "checkbox",
     "std" => 0
   ),
@@ -107,28 +107,20 @@ function scfw_options() {
   global $scfw_themename, $scfw_shortname, $scfw_options;
 
   if ( 'save' == $_REQUEST['action'] ) {
+
+    $values = array();
     foreach ($scfw_options as $value) {
-      update_option($value['id'], $_REQUEST[$value['id']]);
-    }
-
-    foreach ($scfw_options as $item) {
-      $value = FALSE;
-      if (isset($_REQUEST[$item['id']])) {
-        $value = $_REQUEST[$item['id']];
-        if (is_numeric($value)) {
-          $value = intval($value);
-        }
-      }
-
-      if ($value) {
-        update_option($item['id'], $value);
-      } else {
-        delete_option($item['id']);
+      if ($value['id']) {
+        $values[$value['id']] = $_REQUEST[$value['id']];
       }
     }
+
+    update_option($scfw_shortname . '_settings', $values);
 
     echo '<div id="message" class="updated fade"><p><strong>' . __('Options saved.') . '</strong></p></div>';
   }
+
+  $scfw_settings = get_settings('scfw_settings');
 ?>
 
 <div class="wrap">
@@ -137,7 +129,7 @@ function scfw_options() {
 <form method="post" action="">
 
 <?php foreach ($scfw_options as $value) {
-switch ( $value['type'] ) {
+switch ($value['type']) {
 
 case "start-table":
 ?>
@@ -164,11 +156,12 @@ case 'paragraph':
 break;
 
 case 'textfield':
+if ($scfw_settings[$value['id']] != "") { $set_value = $scfw_settings[$value['id']]; } else { $set_value = $value['std']; }
 ?>
   <tr valign="top">
     <th scope="row"><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
     <td>
-      <input size="<?php echo $value['size']; ?>" name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="<?php echo $value['type']; ?>" value="<?php if ( get_settings( $value['id'] ) != "") { echo get_settings( $value['id'] ); } else { echo $value['std']; } ?>" />
+      <input size="<?php echo $value['size']; ?>" name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="<?php echo $value['type']; ?>" value="<?php echo $set_value; ?>" />
       <span class="description"><?php echo $value['desc']; ?></span>
     </td>
   </tr>
@@ -176,11 +169,12 @@ case 'textfield':
 break;
 
 case 'textarea':
+if ($scfw_settings[$value['id']] != "") { $set_value = $scfw_settings[$value['id']]; } else { $set_value = $value['std']; }
 ?>
   <tr valign="top">
     <th scope="row"><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
     <td>
-      <textarea name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" cols="40" rows="5"><?php if (get_settings( $value['id']) != "") { echo get_settings($value['id']); } else { echo $value['std']; } ?></textarea>
+      <textarea name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" cols="40" rows="5"><?php echo $set_value; ?></textarea>
       <span class="description"><?php echo $value['desc']; ?></span>
     </td>
   </tr>
@@ -196,7 +190,7 @@ case 'select':
 <?php foreach ($value['options'] as $key => $item) { ?>
 <?php
   $selected = '';
-  $saved = get_settings($value['id']);
+  $saved = $scfw_settings[$value['id']];
   if ($saved && $saved == $item) {
     $selected = ' selected="selected"';
   } elseif (!$saved && $value['std'][0] == $item) {
@@ -213,7 +207,7 @@ case 'select':
 break;
 
 case "checkbox":
-$checked = get_settings($value['id']) ? 'checked="checked"' : '';
+$checked = $scfw_settings[$value['id']] ? 'checked="checked"' : '';
 ?>
   <tr valign="top">
     <th scope="row"><?php echo $value['name']; ?></th>
