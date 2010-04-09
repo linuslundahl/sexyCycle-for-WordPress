@@ -1,7 +1,7 @@
 <?php
 
 function scfw_menu() {
-  add_options_page('SecyCycle for WordPress', 'SexyCycle for WordPress', 'manage_options', 'sexycycle-for-wordpress-menu', 'scfw_options');
+  add_options_page('SecyCycle for WordPress', 'SexyCycle', 'manage_options', 'sexycycle-for-wordpress-menu', 'scfw_options');
 }
 
 // Setup form
@@ -78,6 +78,13 @@ $scfw_options = array(
     "std" => '400',
     "size" => 4
   ),
+  // array(
+  //   "name" => "Cycling interval",
+  //   "desc" => "Leave empty to disable auto cycling.",
+  //   "id" => $scfw_shortname . "_interval",
+  //   "type" => "textfield",
+  //   "size" => 4
+  // ),
   array(
     "name" => "Type of controls",
     "desc" => "Select if you would like to add PREV and NEXT buttons.",
@@ -168,7 +175,6 @@ break;
 
 case 'textfield':
 $set_value = $scfw_settings[$value['id']] ? $scfw_settings[$value['id']] : $value['std'];
-// if ($scfw_settings[$value['id']] != "") { $set_value = $scfw_settings[$value['id']]; } else { $set_value = $value['std']; }
 ?>
   <tr valign="top">
     <th scope="row"><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
@@ -203,9 +209,11 @@ case 'select':
 <?php
   $selected = '';
   $saved = $scfw_settings[$value['id']];
-  if ($saved && $saved == $item) {
+  if ($saved && ($saved === $item)) {
     $selected = ' selected="selected"';
-  } elseif (!$saved && $value['std'] == $item) {
+  } elseif (!$saved && ($saved === $item)) {
+    $selected = ' selected="selected"';
+  } elseif (!$saved && ($value['std'] === $item)) {
     $selected = ' selected="selected"';
   }
 ?>
