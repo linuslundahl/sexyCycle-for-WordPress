@@ -9,12 +9,11 @@
  */
 
 ul.sexyCycle-content  { list-style: none; margin: 0; padding: 0; width: 99999999; position: absolute }
-li.sexyCycle-content  { margin: 0; padding: 0; }
 .sexyCycle { position: relative; overflow: hidden; }
 .sexyCycle-wrap { position: relative; width: 99999px; }
 .sexyCycle-content { width: 99999; position: absolute; overflow: hidden; text-indent: 0 !important; list-style: none !important; list-style-type: none !important; list-style- margin: 0 !important; padding: 0 !important; }
 .sexyCycle-content li { margin: 0 !important; padding: 0 !important; display: block; }
-.sexyCycle-content li:before { content: none !important; }
+.sexyCycle-content li:before { content: "" !important; }
 .cursor { cursor: pointer; }
 .sexyCycle .controllers { width: 100%; }
 .sexyCycle .controllers .prev { border-right: 2px solid #ccc; margin: 0 10px 0 0; padding: 0 10px 0 0; }
