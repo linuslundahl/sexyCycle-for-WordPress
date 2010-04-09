@@ -78,13 +78,13 @@ $scfw_options = array(
     "std" => '400',
     "size" => 4
   ),
-  // array(
-  //   "name" => "Cycling interval",
-  //   "desc" => "Leave empty to disable auto cycling.",
-  //   "id" => $scfw_shortname . "_interval",
-  //   "type" => "textfield",
-  //   "size" => 4
-  // ),
+  array(
+    "name" => "Auto cycle speed",
+    "desc" => "Leave empty to disable auto cycling. (milliseconds)",
+    "id" => $scfw_shortname . "_interval",
+    "type" => "textfield",
+    "size" => 4
+  ),
   array(
     "name" => "Type of controls",
     "desc" => "Select if you would like to add PREV and NEXT buttons.",

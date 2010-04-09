@@ -21,12 +21,12 @@ if (is_admin()) {
   add_action('admin_menu', 'scfw_menu', -999);
 } else {
   add_action('wp_head', 'scfw_add_css');
-  wp_enqueue_script('easing', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.easing.js", false, '1.3', true);
-  wp_enqueue_script('sexycycle', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.sexyCycle-packed.js", false, '0.3', true);
   if (!$scfw_settings['scfw_jquery']) {
     wp_deregister_script('jquery');
-    wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
+    wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', false, '1.4+', false);
   }
+  wp_enqueue_script('easing', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.easing-packed.js", false, '1.3', false);
+  wp_enqueue_script('sexycycle', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.sexyCycle-packed.js", false, '0.3', false);
   add_filter('post_gallery', 'scfw_gallery_shortcode', 10, 2);
 }
 
@@ -85,14 +85,14 @@ function scfw_gallery_shortcode($output, $attr) {
         $js .= "cycle: false,";
       }
 
-      // if ($scfw_settings['scfw_interval']) {
-      //   $js .= "interval: " . $scfw_settings['scfw_interval'] . ",";
-      // }
+      if ($scfw_settings['scfw_interval']) {
+        $js .= "interval: " . $scfw_settings['scfw_interval'] . ",";
+      }
       $js .= "}";
     }
 
     // Add JS for each gallery
-    $output = apply_filters('gallery_style', "<script type=\"text/javascript\">$(document).ready(function() { $(\"#box-$id\").sexyCycle($js); });</script>\n");
+    $output = apply_filters('gallery_style', "<script type=\"text/javascript\">jQuery(function($) { $(\"#box-$id\").sexyCycle($js); });</script>\n");
 
     // Controls (prev)
     if ($scfw_settings['scfw_controls'] == 'beforeafter') {
