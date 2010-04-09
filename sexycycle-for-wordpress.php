@@ -1,9 +1,9 @@
 <?php
 
 /* 
-Plugin Name: SexyCycle for WordPress
-Plugin URI: http://github.com/linuslundahl/SexyCycle-for-WordPress/
-Description: Uses <a href="http://suprb.com/apps/sexyCycle/">SexyCycle jQuery plugin</a> to cycle through gallery images. (SexyCycle created by <a href="http://suprb.com/">Andreas Pihlström</a>)
+Plugin Name: sexyCycle for WordPress
+Plugin URI: http://github.com/linuslundahl/sexyCycle-for-WordPress/
+Description: Uses <a href="http://suprb.com/apps/sexyCycle/">sexyCycle jQuery plugin</a> to cycle through gallery images. (sexyCycle created by <a href="http://suprb.com/">Andreas Pihlström</a>)
 Version: 0.2-dev
 Author: Linus Lundahl
 Author URI: http://unwise.se

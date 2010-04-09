@@ -1,15 +1,15 @@
 <?php
 
 function scfw_menu() {
-  add_options_page('SecyCycle for WordPress', 'SexyCycle', 'manage_options', 'sexycycle-for-wordpress-menu', 'scfw_options');
+  add_options_page('sexyCycle for WordPress', 'sexyCycle', 'manage_options', 'sexycycle-for-wordpress-menu', 'scfw_options');
 }
 
 // Setup form
-$scfw_themename = "SexyCycle for WordPress";
+$scfw_themename = "sexyCycle for WordPress";
 $scfw_shortname = "scfw";
 $scfw_options = array(
   array(
-    "value" => "<a href=\"http://suprb.com/apps/sexyCycle/\">SexyCycle jQuery plugin</a> created by <a href=\"http://suprb.com/\">Andreas Pihlstr&ouml;m</a>.<br />SexyCycle for WordPress created by <a href=\"http://unwise.se/\">Linus Lundahl</a>.<br /><br />These settings affects <strong>all galleries</strong> in <strong>all posts and pages</strong>, single gallery settings are not available.",
+    "value" => "<a href=\"http://suprb.com/apps/sexyCycle/\">sexyCycle jQuery plugin</a> created by <a href=\"http://suprb.com/\">Andreas Pihlstr&ouml;m</a>.<br />sexyCycle for WordPress created by <a href=\"http://unwise.se/\">Linus Lundahl</a>.<br /><br />These settings affects <strong>all galleries</strong> in <strong>all posts and pages</strong>, single gallery settings are not available.",
     "type" => "paragraph"
   ),
   array(
@@ -131,7 +131,7 @@ $scfw_options = array(
     'type' => 'end-table'
   ),
   array(
-    'value' => '<small><strong>*</strong> SexyCycle depends on jQuery 1.4+ and if you disable it from loading here, make sure it\'s loaded elsewhere.</small>',
+    'value' => '<small><strong>*</strong> sexyCycle depends on jQuery 1.4+ and if you disable it from loading here, make sure it\'s loaded elsewhere.</small>',
     'type' => 'paragraph'
   )
 );
