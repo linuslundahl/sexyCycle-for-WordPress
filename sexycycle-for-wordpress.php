@@ -45,7 +45,7 @@ function scfw_gallery_shortcode($output, $attr) {
     'id'         => $post->ID,
     'itemtag'    => 'ul',
     'icontag'    => 'li',
-    'size'       => 'large',
+    'size'       => $scfw_settings['scfw_img_size'] ? $scfw_settings['scfw_img_size'] : 'large',
   ), $attr));
 
   $id = intval($id);

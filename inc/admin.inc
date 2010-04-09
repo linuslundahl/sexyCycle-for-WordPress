@@ -20,6 +20,18 @@ $scfw_options = array(
     "type" => 'start-table'
   ),
   array(
+    "name" => "Image size",
+    "desc" => "Select what image size the galleries should use.",
+    "id" => $scfw_shortname . "_img_size",
+    "type" => "select",
+    "options" => array(
+      'thumbnail' => 'thumbnail',
+      'medium' => 'medium',
+      'large' => 'large'
+    ),
+    "std" => 'large'
+  ),
+  array(
     "name" => "jQuery Easing animation",
     "desc" => "Slide animation that should be used.",
     "id" => $scfw_shortname . "_animation",
@@ -56,15 +68,14 @@ $scfw_options = array(
       'easeOutBounce' => 'easeOutBounce',
       'easeInOutBounce' => 'easeInOutBounce'
     ),
-    "std" => array(
-      'easeOutExpo'
-    ),
+    "std" => 'easeOutExpo'
   ),
   array(
     "name" => "Speed",
     "desc" => "The speed of the animation. (milliseconds)",
     "id" => $scfw_shortname . "_speed",
     "type" => "textfield",
+    "std" => '400',
     "size" => 4
   ),
   array(
@@ -156,7 +167,8 @@ case 'paragraph':
 break;
 
 case 'textfield':
-if ($scfw_settings[$value['id']] != "") { $set_value = $scfw_settings[$value['id']]; } else { $set_value = $value['std']; }
+$set_value = $scfw_settings[$value['id']] ? $scfw_settings[$value['id']] : $value['std'];
+// if ($scfw_settings[$value['id']] != "") { $set_value = $scfw_settings[$value['id']]; } else { $set_value = $value['std']; }
 ?>
   <tr valign="top">
     <th scope="row"><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
@@ -169,7 +181,7 @@ if ($scfw_settings[$value['id']] != "") { $set_value = $scfw_settings[$value['id
 break;
 
 case 'textarea':
-if ($scfw_settings[$value['id']] != "") { $set_value = $scfw_settings[$value['id']]; } else { $set_value = $value['std']; }
+$set_value = $scfw_settings[$value['id']] ? $scfw_settings[$value['id']] : $value['std'];
 ?>
   <tr valign="top">
     <th scope="row"><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
@@ -193,7 +205,7 @@ case 'select':
   $saved = $scfw_settings[$value['id']];
   if ($saved && $saved == $item) {
     $selected = ' selected="selected"';
-  } elseif (!$saved && $value['std'][0] == $item) {
+  } elseif (!$saved && $value['std'] == $item) {
     $selected = ' selected="selected"';
   }
 ?>
