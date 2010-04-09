@@ -99,7 +99,7 @@ $scfw_options = array(
   ),
   array(
     "name" => "PREV title",
-    "desc" => "Choose a differend title.",
+    "desc" => "Choose a different title.",
     "id" => $scfw_shortname . "_prev",
     "type" => "textfield",
     "size" => 4,
@@ -107,7 +107,7 @@ $scfw_options = array(
   ),
   array(
     "name" => "NEXT title",
-    "desc" => "Choose a differend title.",
+    "desc" => "Choose a different title.",
     "id" => $scfw_shortname . "_next",
     "type" => "textfield",
     "size" => 4,
