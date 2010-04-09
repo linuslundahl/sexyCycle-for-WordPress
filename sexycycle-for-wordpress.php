@@ -94,9 +94,12 @@ function scfw_gallery_shortcode($output, $attr) {
     // Add JS for each gallery
     $output = apply_filters('gallery_style', "<script type=\"text/javascript\">jQuery(function($) { $(\"#box-$id\").sexyCycle($js); });</script>\n");
 
+    $prev = $scfw_settings['scfw_prev'] ? htmlentities(utf8_decode($scfw_settings['scfw_prev'])) : 'Prev';
+    $next = $scfw_settings['scfw_next'] ? htmlentities(utf8_decode($scfw_settings['scfw_next'])) : 'Next';
+
     // Controls (prev)
     if ($scfw_settings['scfw_controls'] == 'beforeafter') {
-      $output .= "<span id=\"prev-$id\" class=\"prev cursor before\">Prev</span>";
+      $output .= "<span id=\"prev-$id\" class=\"prev cursor before\">" . $prev . "</span>";
     }
 
     $output .= "<div class=\"sexyCycle\" id=\"box-$id\">\n";
@@ -114,14 +117,14 @@ function scfw_gallery_shortcode($output, $attr) {
 
     // Controls (prev / next)
     if ($scfw_settings['scfw_controls'] == 'under') {
-      $output .= "	<div class=\"controllers\"><span id=\"prev-$id\" class=\" prev cursor\">Prev</span><span id=\"next-$id\" class=\"next cursor\">Next</span></div>";
+      $output .= "	<div class=\"controllers\"><span id=\"prev-$id\" class=\" prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>";
     }
 
     $output .= "</div>\n";
 
     // Controls (next)
     if ($scfw_settings['scfw_controls'] == 'beforeafter') {
-      $output .= "<span id=\"next-$id\" class=\"next cursor after\">Next</span>";
+      $output .= "<span id=\"next-$id\" class=\"next cursor after\">" . $next . "</span>";
     }
 
   }

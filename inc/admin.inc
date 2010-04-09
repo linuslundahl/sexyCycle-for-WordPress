@@ -98,6 +98,22 @@ $scfw_options = array(
     "std" => 0
   ),
   array(
+    "name" => "PREV title",
+    "desc" => "Choose a differend title.",
+    "id" => $scfw_shortname . "_prev",
+    "type" => "textfield",
+    "size" => 4,
+    "std" => 'Prev'
+  ),
+  array(
+    "name" => "NEXT title",
+    "desc" => "Choose a differend title.",
+    "id" => $scfw_shortname . "_next",
+    "type" => "textfield",
+    "size" => 4,
+    "std" => 'Next'
+  ),
+  array(
     "name" => "Disable cycling",
     "desc" => "Prevent the gallery from cycling",
     "id" => $scfw_shortname . "_cycle",
