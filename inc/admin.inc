@@ -13,7 +13,7 @@ $scfw_options = array(
     "type" => "paragraph"
   ),
   array(
-    "name" => "Settings",
+    "name" => "Gallery Settings",
     "type" => "title"
   ),
   array(
@@ -121,6 +121,65 @@ $scfw_options = array(
     "std" => 0
   ),
   array(
+    'type' => 'end-table'
+  ),
+  array(
+    'name' => 'CSS Classes',
+    'type' => 'title'
+  ),
+  array(
+    "value" => "Adding your own CSS classes can come in handy if you for example use a 960 based layout.<br />Add multiple classes separated by a space: <em>grid-2 my-class</em>",
+    "type" => "paragraph"
+  ),
+  array(
+    'type' => 'start-table'
+  ),
+  array(
+    "name" => ".gallery",
+    "id" => $scfw_shortname . "_class_gallery",
+    "type" => "textfield",
+    "size" => 20,
+    "std" => ''
+  ),
+  array(
+    "name" => ".gallery-wrapper",
+    "id" => $scfw_shortname . "_class_galleryw",
+    "type" => "textfield",
+    "size" => 20,
+    "std" => ''
+  ),
+  array(
+    "name" => ".controllers.before",
+    "id" => $scfw_shortname . "_class_cbefore",
+    "type" => "textfield",
+    "size" => 20,
+    "std" => ''
+  ),
+  array(
+    "name" => ".controllers.after",
+    "id" => $scfw_shortname . "_class_cafter",
+    "type" => "textfield",
+    "size" => 20,
+    "std" => ''
+  ),
+  array(
+    "name" => ".controllers.under",
+    "id" => $scfw_shortname . "_class_cunder",
+    "type" => "textfield",
+    "size" => 20,
+    "std" => ''
+  ),
+  array(
+    'type' => 'end-table'
+  ),
+  array(
+    'name' => 'Other',
+    'type' => 'title'
+  ),
+  array(
+    'type' => 'start-table'
+  ),
+  array(
     "name" => "Disable jQuery",
     "desc" => "Don't load latest version of jQuery <strong>*</strong>",
     "id" => $scfw_shortname . "_jquery",
@@ -179,7 +238,7 @@ break;
 
 case "title":
 ?>
-<h3 class="title"><?php echo __($value['name']); ?></h3>
+<h3><?php echo __($value['name']); ?></h3>
 <?php
 break;
 

@@ -91,16 +91,28 @@ function scfw_gallery_shortcode($output, $attr) {
       $js .= "}";
     }
 
+    // Get user defined classes
+    $class_gallery = $scfw_settings['scfw_class_gallery'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_gallery']) : '';
+    $class_galleryw = $scfw_settings['scfw_class_galleryw'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_galleryw']) : '';
+    $class_cbefore = $scfw_settings['scfw_class_cbefore'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_cbefore']) : '';
+    $class_cafter = $scfw_settings['scfw_class_cafter'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_cafter']) : '';
+    $class_cunder = $scfw_settings['scfw_class_cunder'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_cunder']) : '';
+
+    // Begin gallery output
+    $output .= "<div class=\"gallery" . $class_gallery . "\">\n";
+
     // Add JS for each gallery
-    $output = apply_filters('gallery_style', "<script type=\"text/javascript\">jQuery(function($) { $(\"#box-$id\").sexyCycle($js); });</script>\n");
+    $output .= apply_filters('gallery_style', "<script type=\"text/javascript\">jQuery(function($) { $(\"#box-$id\").sexyCycle($js); });</script>\n");
 
     $prev = $scfw_settings['scfw_prev'] ? htmlentities(utf8_decode($scfw_settings['scfw_prev'])) : 'Prev';
     $next = $scfw_settings['scfw_next'] ? htmlentities(utf8_decode($scfw_settings['scfw_next'])) : 'Next';
 
     // Controls (prev)
     if ($scfw_settings['scfw_controls'] == 'beforeafter') {
-      $output .= "<span id=\"prev-$id\" class=\"prev cursor before\">" . $prev . "</span>";
+      $output .= "  <div class=\"controllers before" . $class_cbefore . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span></div>\n";
     }
+
+    $output .= "<div class=\"gallery-wrapper" . $class_galleryw . "\">\n";
 
     $output .= "<div class=\"sexyCycle\" id=\"box-$id\">\n";
     $output .= "  <div class=\"sexyCycle-wrap\">\n";
@@ -114,18 +126,22 @@ function scfw_gallery_shortcode($output, $attr) {
 
     $output .= "  </{$itemtag}>\n";
     $output .= "  </div>\n";
+    $output .= "</div>\n";
 
     // Controls (prev / next)
     if ($scfw_settings['scfw_controls'] == 'under') {
-      $output .= "	<div class=\"controllers\"><span id=\"prev-$id\" class=\" prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>";
+      $output .= "  <div class=\"controllers under" . $class_cunder . "\"><span id=\"prev-$id\" class=\" prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>";
     }
 
     $output .= "</div>\n";
 
     // Controls (next)
     if ($scfw_settings['scfw_controls'] == 'beforeafter') {
-      $output .= "<span id=\"next-$id\" class=\"next cursor after\">" . $next . "</span>";
+      $output .= "  <div class=\"controllers after" . $class_cafter . "\"><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>\n";
     }
+
+    // End gallery output
+    $output .= "</div>\n";
 
   }
 
