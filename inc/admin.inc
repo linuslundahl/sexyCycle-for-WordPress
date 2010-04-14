@@ -114,6 +114,13 @@ $scfw_options = array(
     "std" => 'Next'
   ),
   array(
+    "name" => "Show caption",
+    "desc" => "Enables captions for images",
+    "id" => $scfw_shortname . "_caption",
+    "type" => "checkbox",
+    "std" => 0
+  ),
+  array(
     "name" => "Disable cycling",
     "desc" => "Prevent the gallery from cycling",
     "id" => $scfw_shortname . "_cycle",

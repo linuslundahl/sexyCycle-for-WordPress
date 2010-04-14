@@ -45,6 +45,7 @@ function scfw_gallery_shortcode($output, $attr) {
     'id'         => $post->ID,
     'itemtag'    => 'ul',
     'icontag'    => 'li',
+    'captiontag' => 'span',
     'size'       => $scfw_settings['scfw_img_size'] ? $scfw_settings['scfw_img_size'] : 'large',
   ), $attr));
 
@@ -121,7 +122,11 @@ function scfw_gallery_shortcode($output, $attr) {
     // Create list items with images
     foreach ( $attachments as $gallery_id => $attachment ) {
       $link = wp_get_attachment_image($gallery_id, $size, false, false);
-      $output .= "    <{$icontag}>$link</{$icontag}>\n";
+      $output .= "    <{$icontag}>$link";
+      if ($scfw_settings['scfw_caption'] && trim($attachment->post_excerpt)) {
+        $output .= "<{$captiontag} class='gallery-caption'>" . wptexturize($attachment->post_excerpt) . "</{$captiontag}>";
+      }
+      $output .= "</{$icontag}>\n";
     }
 
     $output .= "  </{$itemtag}>\n";

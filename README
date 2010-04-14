@@ -11,4 +11,5 @@ sexyCycle jQuery plugin @ http://suprb.com/apps/sexyCycle/
 ----------------------------------------------------------------------------------
 
 Issues & Todos:
+Fix caption bug when cycle restarts.
 Add stop button to cycling galleries.
