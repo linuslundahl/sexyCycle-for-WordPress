@@ -89,7 +89,7 @@ $scfw_options = array(
     "name" => "Speed",
     "desc" => "The speed of the animation. (milliseconds)",
     "id" => $scfw_shortname . "_speed",
-    "type" => "textfield",
+    "type" => "text",
     "std" => '400',
     "size" => 4
   ),
@@ -97,7 +97,7 @@ $scfw_options = array(
     "name" => "Auto cycle speed",
     "desc" => "Leave empty to disable auto cycling. (milliseconds)",
     "id" => $scfw_shortname . "_interval",
-    "type" => "textfield",
+    "type" => "text",
     "size" => 4
   ),
   array(
@@ -116,7 +116,7 @@ $scfw_options = array(
     "name" => "PREV title",
     "desc" => "Choose a different title.",
     "id" => $scfw_shortname . "_prev",
-    "type" => "textfield",
+    "type" => "text",
     "size" => 4,
     "std" => 'Prev'
   ),
@@ -124,7 +124,7 @@ $scfw_options = array(
     "name" => "NEXT title",
     "desc" => "Choose a different title.",
     "id" => $scfw_shortname . "_next",
-    "type" => "textfield",
+    "type" => "text",
     "size" => 4,
     "std" => 'Next'
   ),
@@ -162,37 +162,37 @@ $scfw_options = array(
     'type' => 'start-table'
   ),
   array(
-    "name" => ".gallery",
+    "name" => "<code>.gallery</code>",
     "id" => $scfw_shortname . "_class_gallery",
-    "type" => "textfield",
+    "type" => "text",
     "size" => 20,
     "std" => ''
   ),
   array(
-    "name" => ".gallery-wrapper",
+    "name" => "<code>.gallery-wrapper</code>",
     "id" => $scfw_shortname . "_class_galleryw",
-    "type" => "textfield",
+    "type" => "text",
     "size" => 20,
     "std" => ''
   ),
   array(
-    "name" => ".controllers.before",
+    "name" => "<code>.controllers.before</code>",
     "id" => $scfw_shortname . "_class_cbefore",
-    "type" => "textfield",
+    "type" => "text",
     "size" => 20,
     "std" => ''
   ),
   array(
-    "name" => ".controllers.after",
+    "name" => "<code>.controllers.after</code>",
     "id" => $scfw_shortname . "_class_cafter",
-    "type" => "textfield",
+    "type" => "text",
     "size" => 20,
     "std" => ''
   ),
   array(
-    "name" => ".controllers.under",
+    "name" => "<code>.controllers.under</code>",
     "id" => $scfw_shortname . "_class_cunder",
-    "type" => "textfield",
+    "type" => "text",
     "size" => 20,
     "std" => ''
   ),
@@ -275,7 +275,7 @@ case 'paragraph':
 <?php
 break;
 
-case 'textfield':
+case 'text':
 $set_value = $scfw_settings[$value['id']] ? $scfw_settings[$value['id']] : $value['std'];
 ?>
   <tr valign="top">
