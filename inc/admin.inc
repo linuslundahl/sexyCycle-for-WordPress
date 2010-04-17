@@ -9,7 +9,15 @@ $scfw_themename = "sexyCycle for WordPress";
 $scfw_shortname = "scfw";
 $scfw_options = array(
   array(
-    "value" => "<a href=\"http://suprb.com/apps/sexyCycle/\">sexyCycle jQuery plugin</a> created by <a href=\"http://suprb.com/\">Andreas Pihlstr&ouml;m</a>.<br />sexyCycle for WordPress created by <a href=\"http://unwise.se/\">Linus Lundahl</a>.<br /><br />These settings affects <strong>all galleries</strong> in <strong>all posts and pages</strong>, single gallery settings are not available.",
+    "value" => "<a href=\"http://suprb.com/apps/sexyCycle/\">sexyCycle jQuery plugin</a> created by <a href=\"http://suprb.com/\">Andreas Pihlstr&ouml;m</a>.<br />sexyCycle for WordPress created by <a href=\"http://unwise.se/\">Linus Lundahl</a>.<br /><br />",
+    "type" => "paragraph"
+  ),
+  array(
+    "name" => "Instructions",
+    "type" => "title"
+  ),
+  array(
+    "value" => "You can choose to override the default <strong>[gallery]</strong> shortcode, or you can use the shortcode <strong>[sexy-gallery]</strong>, and still have the regular galleries enabled. Galleries are created the same way <em>(Add an image -> Gallery)</em> even if you use the default <strong>[gallery]</strong> shortcode or the <strong>[sexy-gallery]</strong> shortcode, but pasting a <strong>[sexy-gallery]</strong> shortcode must be done manually in HTML mode.<br />If the default shortcode is overriden, these settings affects <strong>all galleries</strong> in <strong>all posts and pages</strong>.<br />Pasting both shortcodes in a single post or page is not recommended.",
     "type" => "paragraph"
   ),
   array(
@@ -18,6 +26,13 @@ $scfw_options = array(
   ),
   array(
     "type" => 'start-table'
+  ),
+  array(
+    "name" => "Override default gallery",
+    "desc" => "If checked, all [gallery] shortcode tags will be overridden.",
+    "id" => $scfw_shortname . "_override",
+    "type" => "checkbox",
+    "std" => 0
   ),
   array(
     "name" => "Image size",
@@ -114,10 +129,15 @@ $scfw_options = array(
     "std" => 'Next'
   ),
   array(
-    "name" => "Show caption",
-    "desc" => "Enables captions for images",
+    "name" => "Caption",
+    "desc" => "Choose which field to use as caption.",
     "id" => $scfw_shortname . "_caption",
-    "type" => "checkbox",
+    "type" => "select",
+    "options" => array(
+      'none' => 0,
+      'Use caption' => 'caption',
+      'Use description' => 'desc'
+    ),
     "std" => 0
   ),
   array(

@@ -4,7 +4,7 @@
 Plugin Name: sexyCycle for WordPress
 Plugin URI: http://github.com/linuslundahl/sexyCycle-for-WordPress/
 Description: Uses <a href="http://suprb.com/apps/sexyCycle/">sexyCycle jQuery plugin</a> to cycle through gallery images. (sexyCycle created by <a href="http://suprb.com/">Andreas Pihlström</a>)
-Version: 0.2-dev
+Version: 0.3-dev
 Author: Linus Lundahl
 Author URI: http://unwise.se
 */
@@ -27,7 +27,10 @@ if (is_admin()) {
   }
   wp_enqueue_script('easing', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.easing-packed.js", false, '1.3', false);
   wp_enqueue_script('sexycycle', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.sexyCycle-packed.js", false, '0.3', false);
-  add_filter('post_gallery', 'scfw_gallery_shortcode', 10, 2);
+  if ($scfw_settings['scfw_override']) {
+    add_filter('post_gallery', 'scfw_gallery_shortcode', 10, 2);
+  }
+  add_shortcode('sexy-gallery', 'scfw_gallery_shortcode');
 }
 
 // Add CSS
@@ -123,9 +126,14 @@ function scfw_gallery_shortcode($output, $attr) {
     foreach ( $attachments as $gallery_id => $attachment ) {
       $link = wp_get_attachment_image($gallery_id, $size, false, false);
       $output .= "    <{$icontag}>$link";
-      if ($scfw_settings['scfw_caption'] && trim($attachment->post_excerpt)) {
+
+      // Caption
+      if ($scfw_settings['scfw_caption'] == 'caption' && trim($attachment->post_excerpt)) {
         $output .= "<{$captiontag} class='gallery-caption'>" . wptexturize($attachment->post_excerpt) . "</{$captiontag}>";
+      } else if ($scfw_settings['scfw_caption'] == 'desc' && trim($attachment->post_content)) {
+        $output .= "<{$captiontag} class='gallery-caption'>" . wptexturize($attachment->post_content) . "</{$captiontag}>";
       }
+
       $output .= "</{$icontag}>\n";
     }
 
