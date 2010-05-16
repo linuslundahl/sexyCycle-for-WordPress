@@ -5,7 +5,7 @@ function scfw_menu() {
 }
 
 // Setup form
-$scfw_themename = "sexyCycle for WordPress";
+$scfw_pluginname = "sexyCycle for WordPress";
 $scfw_shortname = "scfw";
 $scfw_options = array(
   array(
@@ -224,7 +224,7 @@ $scfw_options = array(
 
 
 function scfw_options() {
-  global $scfw_themename, $scfw_shortname, $scfw_options;
+  global $scfw_pluginname, $scfw_shortname, $scfw_options;
 
   if ( 'save' == $_REQUEST['action'] ) {
 
@@ -244,7 +244,7 @@ function scfw_options() {
 ?>
 
 <div class="wrap">
-<h2><?php echo $scfw_themename; ?> settings</h2>
+<h2><?php echo $scfw_pluginname; ?> settings</h2>
 
 <form method="post" action="">
 
