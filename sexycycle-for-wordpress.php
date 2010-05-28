@@ -43,18 +43,46 @@ function scfw_gallery_shortcode($output, $attr) {
   global $post, $wp_locale, $scfw_settings;
 
   extract(shortcode_atts(array(
-    'order'      => 'ASC',
-    'orderby'    => 'menu_order ID',
-    'id'         => $post->ID,
-    'itemtag'    => 'ul',
-    'icontag'    => 'li',
-    'captiontag' => 'span',
-    'size'       => $scfw_settings['scfw_img_size'] ? $scfw_settings['scfw_img_size'] : 'large',
+    'order'         => 'ASC',
+    'orderby'       => 'menu_order ID',
+    'id'            => $post->ID,
+    'itemtag'       => 'ul',
+    'icontag'       => 'li',
+    'captiontag'    => 'span',
+    'size'          => $scfw_settings['scfw_img_size'] ? $scfw_settings['scfw_img_size'] : 'large',
+    'prev'          => $scfw_settings['scfw_prev'] ? $scfw_settings['scfw_prev'] : 'Prev',
+    'next'          => $scfw_settings['scfw_next'] ? $scfw_settings['scfw_next'] : 'Next',
+    'stop'          => $scfw_settings['scfw_stop'] ? $scfw_settings['scfw_stop'] : 'Stop',
+    'animation'     => $scfw_settings['scfw_animation'] ? $scfw_settings['scfw_animation'] : 'easeOutExpo',
+    'controls'      => $scfw_settings['scfw_controls'] ? $scfw_settings['scfw_controls'] : '0',
+    'controls_stop' => $scfw_settings['scfw_controls_stop'] ? $scfw_settings['scfw_controls_stop'] : NULL,
+    'speed'         => $scfw_settings['scfw_speed'] ? $scfw_settings['scfw_speed'] : '400',
+    'interval'      => $scfw_settings['scfw_interval'] ? $scfw_settings['scfw_interval'] : '',
+    'caption'       => $scfw_settings['scfw_caption'] ? $scfw_settings['scfw_caption'] : '0',
+    'cycle'         => $scfw_settings['scfw_cycle'] ? $scfw_settings['scfw_cycle'] : NULL
   ), $attr));
 
   $id = intval($id);
 
-  $attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+  $attachments = get_children(array(
+    'post_parent'     => $id,
+    'post_status'     => 'inherit',
+    'post_type'       => 'attachment',
+    'post_mime_type'  => 'image',
+    'order'           => $order,
+    'orderby'         => $orderby,
+    'size'            => $size,
+    'prev'            => $prev,
+    'next'            => $next,
+    'stop'            => $stop,
+    'controls'        => $controls,
+    'controls_stop'   => $controls_stop,
+    'animation'       => $animation,
+    'speed'           => $speed,
+    'interval'        => $interval,
+    'caption'         => $caption,
+    'cycle'           => $cycle
+  ));
 
   if (empty($attachments)) {
     return '';
@@ -71,29 +99,30 @@ function scfw_gallery_shortcode($output, $attr) {
     $itemtag = tag_escape($itemtag);
 
     // Build JS settings
-    if ($scfw_settings['scfw_speed'] || $scfw_settings['scfw_animation'] || $scfw_settings['scfw_controls'] || $scfw_settings['scfw_cycle']) {
+    if ($speed || $animation || $controls || $cycle) {
       $js = "{";
-      if ($scfw_settings['scfw_speed']) {
-        $js .= "speed: " . $scfw_settings['scfw_speed'] . "," ;
+
+      if ($speed) {
+        $js .= "speed: " . $speed . "," ;
       }
 
-      if ($scfw_settings['scfw_animation']) {
-        $js .= "easing: '" . $scfw_settings['scfw_animation'] . "',";
+      if ($animation) {
+        $js .= "easing: '" . $animation . "',";
       }
 
-      if ($scfw_settings['scfw_controls']) {
+      if ($controls) {
         $js .= "next: '#next-$id',prev: '#prev-$id',";
       }
 
-      if ($scfw_settings['scfw_cycle']) {
+      if ($cycle) {
         $js .= "cycle: false,";
       }
 
-      if ($scfw_settings['scfw_interval']) {
-        $js .= "interval: " . $scfw_settings['scfw_interval'] . ",";
+      if ($interval) {
+        $js .= "interval: " . $interval . ",";
       }
 
-      if ($scfw_settings['scfw_stop']) {
+      if ($controls_stop) {
         $js .= "stop: '#stop-$id',";
       }
 
@@ -115,13 +144,8 @@ function scfw_gallery_shortcode($output, $attr) {
     // Add JS for each gallery
     $output .= apply_filters('gallery_style', "<script type=\"text/javascript\">jQuery(function($) { $(\"#box-$id\").sexyCycle($js); });</script>\n");
 
-    // Control titles
-    $prev = $scfw_settings['scfw_prev'] ? htmlentities(utf8_decode($scfw_settings['scfw_prev'])) : 'Prev';
-    $next = $scfw_settings['scfw_next'] ? htmlentities(utf8_decode($scfw_settings['scfw_next'])) : 'Next';
-    $stop = $scfw_settings['scfw_stop'] ? htmlentities(utf8_decode($scfw_settings['scfw_stop'])) : 'Stop';
-
     // Controls (prev)
-    if ($scfw_settings['scfw_controls'] == 'beforeafter') {
+    if ($controls == 'beforeafter') {
       $output .= "  <div class=\"controllers before" . $class_cbefore . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span></div>\n";
     }
 
@@ -137,9 +161,10 @@ function scfw_gallery_shortcode($output, $attr) {
       $output .= "    <{$icontag}>$link";
 
       // Caption
-      if ($scfw_settings['scfw_caption'] == 'caption' && trim($attachment->post_excerpt)) {
+      if ($caption == 'caption' && trim($attachment->post_excerpt)) {
         $output .= "<{$captiontag} class='gallery-caption'>" . wptexturize($attachment->post_excerpt) . "</{$captiontag}>";
-      } else if ($scfw_settings['scfw_caption'] == 'desc' && trim($attachment->post_content)) {
+      }
+      else if ($caption == 'desc' && trim($attachment->post_content)) {
         $output .= "<{$captiontag} class='gallery-caption'>" . wptexturize($attachment->post_content) . "</{$captiontag}>";
       }
 
@@ -151,19 +176,19 @@ function scfw_gallery_shortcode($output, $attr) {
     $output .= "</div>\n";
 
     // Controls (prev / next)
-    if ($scfw_settings['scfw_controls'] == 'under') {
+    if ($controls == 'under') {
       $output .= "  <div class=\"controllers under" . $class_cunder . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>";
     }
 
     // Controls (stop)
-    if ($scfw_settings['scfw_controls_stop']) {
+    if ($controls_stop) {
       $output .= "  <div class=\"controllers stop\"><span id=\"stop-$id\" class=\"stop cursor\">" . $stop . "</span></div>";
     }
 
     $output .= "</div>\n";
 
     // Controls (next)
-    if ($scfw_settings['scfw_controls'] == 'beforeafter') {
+    if ($controls == 'beforeafter') {
       $output .= "  <div class=\"controllers after" . $class_cafter . "\"><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>\n";
     }
 

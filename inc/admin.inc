@@ -291,7 +291,7 @@ function scfw_options() {
     }
     else {
       // Otherwise disable stop function
-      $values[$scfw_shortname . '_stop'] = '';
+      $values[$scfw_shortname . '_controls_stop'] = NULL;
       unset($scfw_options['controls_stop']);
       unset($scfw_options['stop']);
     }
