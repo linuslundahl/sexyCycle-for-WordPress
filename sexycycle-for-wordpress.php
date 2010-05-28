@@ -4,7 +4,7 @@
 Plugin Name: sexyCycle for WordPress
 Plugin URI: http://github.com/linuslundahl/sexyCycle-for-WordPress/
 Description: Uses <a href="http://suprb.com/apps/sexyCycle/">sexyCycle jQuery plugin</a> to cycle through gallery images. (sexyCycle created by <a href="http://suprb.com/">Andreas Pihlström</a>)
-Version: 0.3.1
+Version: 0.3.2
 Author: Linus Lundahl
 Author URI: http://unwise.se
 */
@@ -93,6 +93,10 @@ function scfw_gallery_shortcode($output, $attr) {
         $js .= "interval: " . $scfw_settings['scfw_interval'] . ",";
       }
 
+      if ($scfw_settings['scfw_stop']) {
+        $js .= "stop: '#stop-$id',";
+      }
+
       $js = rtrim($js, ',');
 
       $js .= "}";
@@ -111,8 +115,10 @@ function scfw_gallery_shortcode($output, $attr) {
     // Add JS for each gallery
     $output .= apply_filters('gallery_style', "<script type=\"text/javascript\">jQuery(function($) { $(\"#box-$id\").sexyCycle($js); });</script>\n");
 
+    // Control titles
     $prev = $scfw_settings['scfw_prev'] ? htmlentities(utf8_decode($scfw_settings['scfw_prev'])) : 'Prev';
     $next = $scfw_settings['scfw_next'] ? htmlentities(utf8_decode($scfw_settings['scfw_next'])) : 'Next';
+    $stop = $scfw_settings['scfw_stop'] ? htmlentities(utf8_decode($scfw_settings['scfw_stop'])) : 'Stop';
 
     // Controls (prev)
     if ($scfw_settings['scfw_controls'] == 'beforeafter') {
@@ -146,7 +152,12 @@ function scfw_gallery_shortcode($output, $attr) {
 
     // Controls (prev / next)
     if ($scfw_settings['scfw_controls'] == 'under') {
-      $output .= "  <div class=\"controllers under" . $class_cunder . "\"><span id=\"prev-$id\" class=\" prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>";
+      $output .= "  <div class=\"controllers under" . $class_cunder . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>";
+    }
+
+    // Controls (stop)
+    if ($scfw_settings['scfw_controls_stop']) {
+      $output .= "  <div class=\"controllers stop\"><span id=\"stop-$id\" class=\"stop cursor\">" . $stop . "</span></div>";
     }
 
     $output .= "</div>\n";
