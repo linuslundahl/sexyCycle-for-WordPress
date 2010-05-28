@@ -4,7 +4,7 @@
 Plugin Name: sexyCycle for WordPress
 Plugin URI: http://github.com/linuslundahl/sexyCycle-for-WordPress/
 Description: Uses <a href="http://suprb.com/apps/sexyCycle/">sexyCycle jQuery plugin</a> to cycle through gallery images. (sexyCycle created by <a href="http://suprb.com/">Andreas Pihlström</a>)
-Version: 0.3
+Version: 0.3.1
 Author: Linus Lundahl
 Author URI: http://unwise.se
 */
@@ -92,6 +92,9 @@ function scfw_gallery_shortcode($output, $attr) {
       if ($scfw_settings['scfw_interval']) {
         $js .= "interval: " . $scfw_settings['scfw_interval'] . ",";
       }
+
+      $js = rtrim($js, ',');
+
       $js .= "}";
     }
 
