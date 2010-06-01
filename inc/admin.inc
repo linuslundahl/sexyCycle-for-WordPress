@@ -133,6 +133,19 @@ $scfw_options['controls_stop'] = array(
   "std" => 0
 );
 
+$scfw_options['imgclick'] = array(
+  "name" => "Image click",
+  "desc" => "Select what clicking the gallery image should default to.",
+  "id" => $scfw_shortname . "_imgclick",
+  "type" => "select",
+  "options" => array(
+    'Swap to next image' => 0,
+    'Link original image' => 'link',
+    'Do nothing' => 'nothing'
+  ),
+  "std" => 0
+);
+
 $scfw_options['prev'] = array(
   "name" => "PREV title",
   "desc" => "Choose a different title.",
@@ -288,6 +301,7 @@ function scfw_options() {
       unset($scfw_options['controls']);
       unset($scfw_options['prev']);
       unset($scfw_options['next']);
+      unset($scfw_options['imgclick']);
     }
     else {
       // Otherwise disable stop function
@@ -308,6 +322,7 @@ function scfw_options() {
     unset($scfw_options['controls']);
     unset($scfw_options['prev']);
     unset($scfw_options['next']);
+    unset($scfw_options['imgclick']);
   }
   else {
     // Otherwise disable stop function

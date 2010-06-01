@@ -4,7 +4,7 @@
 Plugin Name: sexyCycle for WordPress
 Plugin URI: http://github.com/linuslundahl/sexyCycle-for-WordPress/
 Description: Uses <a href="http://suprb.com/apps/sexyCycle/">sexyCycle jQuery plugin</a> to cycle through gallery images. (sexyCycle created by <a href="http://suprb.com/">Andreas Pihlström</a>)
-Version: 0.3.3
+Version: 0.3.4
 Author: Linus Lundahl
 Author URI: http://unwise.se
 */
@@ -65,7 +65,8 @@ function scfw_gallery_shortcode($null, $attr = array()) {
     'speed'         => $scfw_settings['scfw_speed'] ? $scfw_settings['scfw_speed'] : '400',
     'interval'      => $scfw_settings['scfw_interval'] ? $scfw_settings['scfw_interval'] : '',
     'caption'       => $scfw_settings['scfw_caption'] ? $scfw_settings['scfw_caption'] : '0',
-    'cycle'         => $scfw_settings['scfw_cycle'] ? $scfw_settings['scfw_cycle'] : NULL
+    'cycle'         => $scfw_settings['scfw_cycle'] ? $scfw_settings['scfw_cycle'] : NULL,
+    'imgclick'      => $scfw_settings['scfw_imgclick'] ? $scfw_settings['scfw_imgclick'] : '0'
   ), $attr));
 
   $id = intval($id);
@@ -121,6 +122,10 @@ function scfw_gallery_shortcode($null, $attr = array()) {
         $js .= "stop: '#stop-$id',";
       }
 
+      if ($imgclick == 'nothing') {
+        $js .= "imgclick: false,";
+      }
+
       $js = rtrim($js, ',');
 
       $js .= "}";
@@ -152,8 +157,15 @@ function scfw_gallery_shortcode($null, $attr = array()) {
 
     // Create list items with images
     foreach ( $attachments as $gallery_id => $attachment ) {
-      $link = wp_get_attachment_image($gallery_id, $size, false, false);
-      $ret .= "    <{$icontag}>$link";
+      $link = wp_get_attachment_image($gallery_id, $size, true, false);
+      $ret .= "    <{$icontag}>";
+
+      // Image link
+      if ($imgclick == 'link') {
+        $ret .= "<a href=\"" . $attachment->guid . "\" alt=\"" . $attachment->post_name . "\">";
+      }
+
+      $ret .= "$link";
 
       // Caption
       if ($caption == 'caption' && trim($attachment->post_excerpt)) {
@@ -161,6 +173,11 @@ function scfw_gallery_shortcode($null, $attr = array()) {
       }
       else if ($caption == 'desc' && trim($attachment->post_content)) {
         $ret .= "<{$captiontag} class='gallery-caption'>" . wptexturize($attachment->post_content) . "</{$captiontag}>";
+      }
+
+      // End image link
+      if ($imgclick == 'link') {
+        $ret .= "</a>";
       }
 
       $ret .= "</{$icontag}>\n";

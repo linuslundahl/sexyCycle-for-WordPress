@@ -4,7 +4,7 @@ Donate link:
 Tags: simple, image, gallery, slideshow, jQuery
 Requires at least: 2.9
 Tested up to: 3.0
-Stable tag: 0.3.3
+Stable tag: 0.3.4
 
 sexyCycle is a lightweight yet very sleek jQuery plugin for making sliding image galleries. This plugin adds that functionality to WP galleries.
 
@@ -39,16 +39,17 @@ This setting would use small images and the animation easeInExpo instead of the 
 
 = Settings available: =
 
-* __Animation__  `animation:` "easeInQuad", "easeOutQuad", "easeInOutQuad", "easeInCubic", "easeOutCubic", "easeInOutCubic", "easeInQuart", "easeOutQuart", "easeInOutQuart", "easeInQuint", "easeOutQuint", "easeInOutQuint", "easeInSine", "easeOutSine", "easeInOutSine", "easeInExpo", "easeOutExpo", "easeInOutExpo", "easeInCirc", "easeOutCirc", "easeInOutCirc", "easeInElastic", "easeOutElastic", "easeInOutElastic", "easeInBack", "easeOutBack", "easeInOutBack", "easeInBounce", "easeOutBounce", "easeInOutBounce"
-* __Animation speed__  `speed:` "int" (milliseconds)
-* __Auto cycle speed__  `interval:` "int" (milliseconds)
-* __Use controls__  `controls:` "0", "under", "beforeafter"
-* __Previous text__  `prev:` "string"
-* __Next text__  `next:` "string"
-* __Use stop__  `controls_stop:` "boolean" (0/1)
-* __Stop text__  `stop:` "string"
-* __Use caption__  `caption:` "0", "caption", "desc"
-* __Disable cycle at end__  `cycle:` "boolean" (0/1)
+* __Animation:__ `animation=` "easeInQuad", "easeOutQuad", "easeInOutQuad", "easeInCubic", "easeOutCubic", "easeInOutCubic", "easeInQuart", "easeOutQuart", "easeInOutQuart", "easeInQuint", "easeOutQuint", "easeInOutQuint", "easeInSine", "easeOutSine", "easeInOutSine", "easeInExpo", "easeOutExpo", "easeInOutExpo", "easeInCirc", "easeOutCirc", "easeInOutCirc", "easeInElastic", "easeOutElastic", "easeInOutElastic", "easeInBack", "easeOutBack", "easeInOutBack", "easeInBounce", "easeOutBounce", "easeInOutBounce"
+* __Animation speed:__ `speed=` "int" (milliseconds)
+* __Auto cycle speed:__ `interval=` "int" (milliseconds)
+* __Use controls:__ `controls=` "0", "under", "beforeafter"
+* __Image click:__ `imgclick=` "0", "image", "nothing" (0 = swap to next image)
+* __Previous text:__ `prev=` "string"
+* __Next text:__ `next=` "string"
+* __Use stop:__  `controls_stop=` "boolean" (0/1)
+* __Stop text:__ `stop=` "string"
+* __Use caption:__ `caption=` "0", "caption", "desc"
+* __Disable cycle at end:__ `cycle=` "boolean" (0/1)
 
 == Frequently Asked Questions ==
 
@@ -64,6 +65,9 @@ No FAQ available at the moment.
 1. The settings page.
 
 == Changelog ==
+
+= 0.3.4 =
+Added possibility to choose image click behavior, defaults to "Swap to next image". Other options are "Link to original image" and "Do nothing".
 
 = 0.3.3 =
 Fix bug that only made per gallery settings available for the [gallery] shortcode, and not the [sexy-gallery] shortcode.
