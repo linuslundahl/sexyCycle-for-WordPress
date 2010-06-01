@@ -4,7 +4,7 @@
 Plugin Name: sexyCycle for WordPress
 Plugin URI: http://github.com/linuslundahl/sexyCycle-for-WordPress/
 Description: Uses <a href="http://suprb.com/apps/sexyCycle/">sexyCycle jQuery plugin</a> to cycle through gallery images. (sexyCycle created by <a href="http://suprb.com/">Andreas Pihlström</a>)
-Version: 0.3.2
+Version: 0.3.3
 Author: Linus Lundahl
 Author URI: http://unwise.se
 */
@@ -19,7 +19,8 @@ if (!defined('SCFW_PLUGIN_BASENAME')) {
 
 if (is_admin()) {
   add_action('admin_menu', 'scfw_menu', -999);
-} else {
+}
+else {
   add_action('wp_head', 'scfw_add_css');
   if (!$scfw_settings['scfw_jquery']) {
     wp_deregister_script('jquery');
@@ -30,7 +31,7 @@ if (is_admin()) {
   if ($scfw_settings['scfw_override']) {
     add_filter('post_gallery', 'scfw_gallery_shortcode', 10, 2);
   }
-  add_shortcode('sexy-gallery', 'scfw_gallery_shortcode');
+  add_shortcode('sexy-gallery', 'scfw_sexy_gallery_shortcode');
 }
 
 // Add CSS
@@ -38,8 +39,13 @@ function scfw_add_css() {
   echo '<link rel="stylesheet" href="' . WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . '/inc/sexyCycle.css' . '" type="text/css" media="screen" />'."\n";
 }
 
+// Custom sexy-gallery output
+function scfw_sexy_gallery_shortcode($attr) {
+  return scfw_gallery_shortcode(NULL, $attr);
+}
+
 // Custom gallery output
-function scfw_gallery_shortcode($output, $attr) {
+function scfw_gallery_shortcode($null, $attr = array()) {
   global $post, $wp_locale, $scfw_settings;
 
   extract(shortcode_atts(array(
@@ -71,17 +77,6 @@ function scfw_gallery_shortcode($output, $attr) {
     'post_mime_type'  => 'image',
     'order'           => $order,
     'orderby'         => $orderby,
-    'size'            => $size,
-    'prev'            => $prev,
-    'next'            => $next,
-    'stop'            => $stop,
-    'controls'        => $controls,
-    'controls_stop'   => $controls_stop,
-    'animation'       => $animation,
-    'speed'           => $speed,
-    'interval'        => $interval,
-    'caption'         => $caption,
-    'cycle'           => $cycle
   ));
 
   if (empty($attachments)) {
@@ -89,13 +84,13 @@ function scfw_gallery_shortcode($output, $attr) {
   }
 
   if (is_feed()) {
-    $output = "\n";
+    $ret = "\n";
     foreach ( $attachments as $att_id => $attachment ) {
-      $output .= wp_get_attachment_link($att_id, 'small', true) . "\n";
+      $ret .= wp_get_attachment_link($att_id, 'small', true) . "\n";
     }
   }
 
-  if (!$output) {
+  if (!$ret) {
     $itemtag = tag_escape($itemtag);
 
     // Build JS settings
@@ -139,65 +134,65 @@ function scfw_gallery_shortcode($output, $attr) {
     $class_cunder = $scfw_settings['scfw_class_cunder'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_cunder']) : '';
 
     // Begin gallery output
-    $output .= "<div class=\"gallery" . $class_gallery . "\">\n";
+    $ret .= "<div class=\"gallery" . $class_gallery . "\">\n";
 
     // Add JS for each gallery
-    $output .= apply_filters('gallery_style', "<script type=\"text/javascript\">jQuery(function($) { $(\"#box-$id\").sexyCycle($js); });</script>\n");
+    $ret .= apply_filters('gallery_style', "<script type=\"text/javascript\">jQuery(function($) { $(\"#box-$id\").sexyCycle($js); });</script>\n");
 
     // Controls (prev)
     if ($controls == 'beforeafter') {
-      $output .= "  <div class=\"controllers before" . $class_cbefore . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span></div>\n";
+      $ret .= "  <div class=\"controllers before" . $class_cbefore . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span></div>\n";
     }
 
-    $output .= "<div class=\"gallery-wrapper" . $class_galleryw . "\">\n";
+    $ret .= "<div class=\"gallery-wrapper" . $class_galleryw . "\">\n";
 
-    $output .= "<div class=\"sexyCycle\" id=\"box-$id\">\n";
-    $output .= "  <div class=\"sexyCycle-wrap\">\n";
-    $output .= "  <{$itemtag} class=\"sexyCycle-content\">\n";
+    $ret .= "<div class=\"sexyCycle\" id=\"box-$id\">\n";
+    $ret .= "  <div class=\"sexyCycle-wrap\">\n";
+    $ret .= "  <{$itemtag} class=\"sexyCycle-content\">\n";
 
     // Create list items with images
     foreach ( $attachments as $gallery_id => $attachment ) {
       $link = wp_get_attachment_image($gallery_id, $size, false, false);
-      $output .= "    <{$icontag}>$link";
+      $ret .= "    <{$icontag}>$link";
 
       // Caption
       if ($caption == 'caption' && trim($attachment->post_excerpt)) {
-        $output .= "<{$captiontag} class='gallery-caption'>" . wptexturize($attachment->post_excerpt) . "</{$captiontag}>";
+        $ret .= "<{$captiontag} class='gallery-caption'>" . wptexturize($attachment->post_excerpt) . "</{$captiontag}>";
       }
       else if ($caption == 'desc' && trim($attachment->post_content)) {
-        $output .= "<{$captiontag} class='gallery-caption'>" . wptexturize($attachment->post_content) . "</{$captiontag}>";
+        $ret .= "<{$captiontag} class='gallery-caption'>" . wptexturize($attachment->post_content) . "</{$captiontag}>";
       }
 
-      $output .= "</{$icontag}>\n";
+      $ret .= "</{$icontag}>\n";
     }
 
-    $output .= "  </{$itemtag}>\n";
-    $output .= "  </div>\n";
-    $output .= "</div>\n";
+    $ret .= "  </{$itemtag}>\n";
+    $ret .= "  </div>\n";
+    $ret .= "</div>\n";
 
     // Controls (prev / next)
     if ($controls == 'under') {
-      $output .= "  <div class=\"controllers under" . $class_cunder . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>";
+      $ret .= "  <div class=\"controllers under" . $class_cunder . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>";
     }
 
     // Controls (stop)
     if ($controls_stop) {
-      $output .= "  <div class=\"controllers stop\"><span id=\"stop-$id\" class=\"stop cursor\">" . $stop . "</span></div>";
+      $ret .= "  <div class=\"controllers stop\"><span id=\"stop-$id\" class=\"stop cursor\">" . $stop . "</span></div>";
     }
 
-    $output .= "</div>\n";
+    $ret .= "</div>\n";
 
     // Controls (next)
     if ($controls == 'beforeafter') {
-      $output .= "  <div class=\"controllers after" . $class_cafter . "\"><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>\n";
+      $ret .= "  <div class=\"controllers after" . $class_cafter . "\"><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>\n";
     }
 
     // End gallery output
-    $output .= "</div>\n";
+    $ret .= "</div>\n";
 
   }
 
-  return $output;
+  return $ret;
 }
 
 ?>
