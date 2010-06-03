@@ -145,6 +145,9 @@ function scfw_gallery_shortcode($null, $attr = array()) {
     $ret .= apply_filters('gallery_style', "<script type=\"text/javascript\">jQuery(function($) { $(\"#box-$id\").sexyCycle($js); });</script>\n");
 
     // Controls (prev)
+	if( $controls == 'before'){
+		$ret .= "<div class=\"controllers before" . $class_cbefore . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>   ";
+	}
     if ($controls == 'beforeafter') {
       $ret .= "  <div class=\"controllers before" . $class_cbefore . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span></div>\n";
     }
