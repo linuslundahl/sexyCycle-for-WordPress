@@ -119,6 +119,7 @@ $scfw_options['controls'] = array(
   "type" => "select",
   "options" => array(
     'none' => 0,
+	'Before Image' => 'before',
     'Under Image' => 'under',
     'Before / After image' => 'beforeafter'
   ),
