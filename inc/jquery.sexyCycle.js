@@ -8,6 +8,7 @@
  * (http://suprb.com/apps/sexyCycle/)
  */
 
+//Was no commenting here so it's pretty difficult to understand what each of these is referencing, going through and adding comments
 (function ($) {
 
     $.fn.sexyCycle = function (options) {
@@ -23,31 +24,32 @@
             cycle: true,
             imgclick: true
         };
-
+        
         var options = $.extend(defaults, options);
         var box = this;
         var click = true;
         var sexyCycle = $(".sexyCycle-wrap", this);
         var count = options.start;
         var totalw = $(box).width();
-
-        var img = $(".sexyCycle-content img:eq(0)", sexyCycle).attr('src');
-        $('body').append('<span class="sexycycleimgtempload"></span>');
-        $('.sexycycleimgtempload').hide();
+        
+        //No idea what this block of code is accomplishing
+        var img = $(".sexyCycle-content img:eq(0)", sexyCycle).attr('src'); //This sets img to the source of the first image
+        $('body').append('<span class="sexycycleimgtempload"></span>');     //Creates a temporary span 
+        $('.sexycycleimgtempload').hide();                                  //hides the temporary span ... why
 
         var _tmph = 0,
             _left = 0,
             _cn = 0;
-        var _th = $(".sexyCycle-content img:eq(0)", sexyCycle).height();
+        var _th = $(".sexyCycle-content img:eq(0)", sexyCycle).height();    
 
-        $(sexyCycle).height(_th);
+        $(sexyCycle).height(_th);                                           //**Sets the height of the Gallery to the height of the first image**
 
-        $('.sexycycleimgtempload').remove();
-
-        var _t = $(".sexyCycle-content", sexyCycle).children().size();
-        var _p = $(".sexyCycle-content img:eq(" + options.start + ")", sexyCycle).width();
-        var _f = $(".sexyCycle-content img:eq(0)", sexyCycle);
-        var _l = $(".sexyCycle-content img:eq(" + (_t - 1) + ")", sexyCycle);
+        $('.sexycycleimgtempload').remove();                                //Now the temporary span has been removed with nothing ever being done to it ?!?!?
+        
+        var _t = $(".sexyCycle-content", sexyCycle).children().size();                      //This checks how many images are part of this gallery, I assume _t stands for "Total"
+        var _p = $(".sexyCycle-content img:eq(" + options.start + ")", sexyCycle).width();  //This is the width of the starting image
+        var _f = $(".sexyCycle-content img:eq(0)", sexyCycle);                              //This is setting a reference to the first image in the gallery
+        var _l = $(".sexyCycle-content img:eq(" + (_t - 1) + ")", sexyCycle);               //This is setting a refernce to the last image in the gallery
 
         var _tmp = $(".sexyCycle-content img:eq(" + (_t - 1) + ")", sexyCycle).attr('src');
         var _tmph = $(".sexyCycle-content img:eq(" + (_t - 1) + ")", sexyCycle).height();
@@ -132,6 +134,7 @@
                 if (_cn - 1 < _t - 1 && _cn - 1 >= -1) {
 
                     _w = $(".sexyCycle-content img:eq(" + _cn + ")", sexyCycle).width();
+                    _h = $(".sexyCycle-content img:eq(" + _cn + ")", sexyCycle).height();
 
                     $(".sexyCycle-content", sexyCycle).animate({
                         'left': slideto + _p + 'px'
@@ -140,7 +143,8 @@
                         easing: options.easing
                     });
                     $(box).animate({
-                        'width': _w + 'px'
+                        'width': _w + 'px',
+                        'height' : _h + 'px'
                     }, {
                         duration: options.speed,
                         easing: options.easing,
@@ -187,9 +191,11 @@
                         }
 
                         _w = $(".sexyCycle-content img:eq(" + count + ")", sexyCycle).width();
-
+                        _h = $(".sexyCycle-content img:eq(" + count + ")", sexyCycle).height();
+                        
                         $(box).animate({
-                            'width': _w + 'px'
+                            'width': _w + 'px',
+                            'height': _h + 'px'
                         }, {
                             duration: options.speed,
                             easing: options.easing,
