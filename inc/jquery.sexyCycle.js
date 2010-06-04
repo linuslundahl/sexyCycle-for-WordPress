@@ -196,7 +196,7 @@
                         }
 
                         _w = $(".sexyCycle-content img:eq(" + count + ")", sexyCycle).width();
-                        _h = $(".sexyCycle-content img:eq(" + count + ")", sexyCycle).height() + 15;
+                        _h = $(".sexyCycle-content img:eq(" + count + ")", sexyCycle).height() + 10;
                         
                         $(box).animate({
                             'width': _w + 'px',
