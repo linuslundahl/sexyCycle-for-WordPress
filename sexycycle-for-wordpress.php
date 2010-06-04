@@ -4,7 +4,7 @@
 Plugin Name: sexyCycle for WordPress
 Plugin URI: http://github.com/linuslundahl/sexyCycle-for-WordPress/
 Description: Uses <a href="http://suprb.com/apps/sexyCycle/">sexyCycle jQuery plugin</a> to cycle through gallery images. (sexyCycle created by <a href="http://suprb.com/">Andreas Pihlström</a>)
-Version: 0.3.4
+Version: 0.4
 Author: Linus Lundahl
 Author URI: http://unwise.se
 */
@@ -57,7 +57,7 @@ function scfw_gallery_shortcode($null, $attr = array()) {
     'captiontag'    => 'span',
     'size'          => $scfw_settings['scfw_img_size'] ? $scfw_settings['scfw_img_size'] : 'large',
     'prev'          => $scfw_settings['scfw_prev'] ? stripslashes($scfw_settings['scfw_prev']) : 'Prev',
-	'counter'		=> $scfw_settings['scfw_counter'] ? $scfw_settings['scfw_counter'] : NULL,
+    'counter'       => $scfw_settings['scfw_counter'] ? $scfw_settings['scfw_counter'] : NULL,
     'next'          => $scfw_settings['scfw_next'] ? stripslashes($scfw_settings['scfw_next']) : 'Next',
     'stop'          => $scfw_settings['scfw_stop'] ? $scfw_settings['scfw_stop'] : 'Stop',
     'animation'     => $scfw_settings['scfw_animation'] ? $scfw_settings['scfw_animation'] : 'easeOutExpo',
@@ -149,12 +149,12 @@ function scfw_gallery_shortcode($null, $attr = array()) {
     $ret .= apply_filters('gallery_style', "<script type=\"text/javascript\">jQuery(function($) { $(\"#box-$id\").sexyCycle($js); });</script>\n");
 
     // Controls (prev)
-	if( $counter ){
-		$ret .= "<div id=\"counter-$id\" class=\"counter\"></div>";
-	}
-	if( $controls == 'before'){
-		$ret .= "<div class=\"controllers before" . $class_cbefore . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>   ";
-	}
+    if( $counter ){
+      $ret .= "<div id=\"counter-$id\" class=\"counter\"></div>";
+    }
+    if( $controls == 'before'){
+      $ret .= "<div class=\"controllers before" . $class_cbefore . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>   ";
+    }
     if ($controls == 'beforeafter') {
       $ret .= "  <div class=\"controllers before" . $class_cbefore . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span></div>\n";
     }

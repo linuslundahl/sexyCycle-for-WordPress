@@ -1,5 +1,5 @@
 /**
- * jQuery sexyCycle v0.3
+ * jQuery sexyCycle v0.3 (With alterations)
  *
  * Terms of Use - jQuery sexyCycle
  * under the MIT (http://www.opensource.org/licenses/mit-license.php) License.
