@@ -62,8 +62,12 @@
         for (_lc = 0; _lc < options.start; _lc++) {
             _left += $(".sexyCycle-content img:eq(" + _lc + ")", sexyCycle).width();
         }
-
-
+        
+        //Initiate the counter 
+        if( $('#counter').length > 0 ){
+            $('#counter').html("<span style='counter-text'>"+ (count+1) +" of "+ _t +"</span>");
+        }
+        
         $('<span class="sexyCycleTempf" style="background: url(\'' + _tmp + '\'); float: left; width: ' + _tmpw + 'px; height: ' + _tmph + 'px; display: block"></span>').insertBefore($(".sexyCycle-content li:eq(0)", sexyCycle));
         $(".sexyCycleTempf", sexyCycle).css("display", "none");
 
@@ -116,7 +120,7 @@
         }
 
         function slide(_e) {
-
+            
             if (click == true) {
 
                 click = false;
@@ -210,9 +214,11 @@
                 }
 
             }
-
+            //Update the counter 
+            if( $('#counter').length > 0 ){
+                $('#counter').html("<span style='counter-text'>"+ (count+1) +" of "+ _t +"</span>");
+            }
         }
-
     };
 
 })(jQuery);

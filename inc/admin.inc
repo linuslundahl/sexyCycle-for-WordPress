@@ -187,6 +187,14 @@ $scfw_options['caption'] = array(
   "std" => 0
 );
 
+$scfw_options['counter'] = array(
+	"name" => "Slide Counter",
+	"desc" => "If checked, slideshow will include a slide counter.",
+	"id" => $scfw_shortname ."_counter",
+	"type" => "checkbox",
+	"std" => 0
+);
+
 $scfw_options['cycle'] = array(
   "name" => "Disable cycling",
   "desc" => "Prevent the gallery from cycling",
@@ -370,7 +378,7 @@ $set_value = $scfw_settings[$value['id']] ? $scfw_settings[$value['id']] : $valu
   <tr valign="top">
     <th scope="row"><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
     <td>
-      <input size="<?php echo $value['size']; ?>" name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="<?php echo $value['type']; ?>" value="<?php echo $set_value; ?>" />
+      <input size="<?php echo $value['size']; ?>" name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="<?php echo $value['type']; ?>" value="<?php echo htmlspecialchars(stripslashes($set_value)); ?>" />
       <span class="description"><?php echo $value['desc']; ?></span>
     </td>
   </tr>

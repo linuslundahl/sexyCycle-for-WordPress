@@ -15,7 +15,7 @@ ul.sexyCycle-content  { list-style: none; margin: 0 !important; padding: 0 !impo
 .sexyCycle-content li { display: block; margin: 0 !important; padding: 0 !important; position: relative; }
 .sexyCycle-content li:before { content: "" !important; }
 .sexyCycle-content li img { border: none !important; float: left; margin: 0 !important; }
-.sexyCycle-content li .gallery-caption { background: rgba(255,255,255,0.8); bottom: 0; left: 0; margin: 0 !important; padding: 3px 0 !important; position: absolute; text-indent: 3px; width: 100%; }
+.sexyCycle-content li .gallery-caption { bottom: 0; left: 0; margin: 0 !important; padding: 3px 0 !important; position: absolute; text-indent: 3px; width: 100%; }
 .cursor { cursor: pointer; }
 .sexyCycle .controllers { width: 100%; }
 .sexyCycle .controllers .prev { border-right: 2px solid #ccc; margin: 0 10px 0 0; padding: 0 10px 0 0; }
