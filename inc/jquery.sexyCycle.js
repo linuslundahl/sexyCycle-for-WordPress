@@ -22,7 +22,8 @@
             start: 0,
             interval: false,
             cycle: true,
-            imgclick: true
+            imgclick: true,
+            counter: null
         };
         
         var options = $.extend(defaults, options);
@@ -64,8 +65,8 @@
         }
         
         //Initiate the counter 
-        if( $('#counter').length > 0 ){
-            $('#counter').html("<span style='counter-text'>"+ (count+1) +" of "+ _t +"</span>");
+        if( $(options.counter).length > 0 ){
+            $(options.counter).html("<span style='counter-text'>"+ (count+1) +" of "+ _t +"</span>");
         }
         //Another set of temporary spans that I'm not sure why they exist
         $('<span class="sexyCycleTempf" style="background: url(\'' + _tmp + '\'); float: left; width: ' + _tmpw + 'px; height: ' + _tmph + 'px; display: block"></span>').insertBefore($(".sexyCycle-content li:eq(0)", sexyCycle));
@@ -215,8 +216,8 @@
 
             }
             //Update the counter 
-            if( $('#counter').length > 0 ){
-                $('#counter').html("<span style='counter-text'>"+ (count+1) +" of "+ _t +"</span>");
+            if( $(options.counter).length > 0 ){
+                $(options.counter).html("<span style='counter-text'>"+ (count+1) +" of "+ _t +"</span>");
             }
         }
     };

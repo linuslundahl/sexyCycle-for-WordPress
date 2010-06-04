@@ -126,7 +126,10 @@ function scfw_gallery_shortcode($null, $attr = array()) {
       if ($imgclick == 'nothing') {
         $js .= "imgclick: false,";
       }
-
+	  
+	  if ($counter) {
+		$js .= "counter: '#counter-$id',";
+	  }
       $js = rtrim($js, ',');
 
       $js .= "}";
@@ -147,7 +150,7 @@ function scfw_gallery_shortcode($null, $attr = array()) {
 
     // Controls (prev)
 	if( $counter ){
-		$ret .= "<div id=\"counter\"></div>";
+		$ret .= "<div id=\"counter-$id\" class=\"counter\"></div>";
 	}
 	if( $controls == 'before'){
 		$ret .= "<div class=\"controllers before" . $class_cbefore . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>   ";
