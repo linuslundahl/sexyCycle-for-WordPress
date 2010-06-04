@@ -137,11 +137,12 @@ function scfw_gallery_shortcode($null, $attr = array()) {
     }
 
     // Get user defined classes
-    $class_gallery = $scfw_settings['scfw_class_gallery'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_gallery']) : '';
+    $class_gallery  = $scfw_settings['scfw_class_gallery'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_gallery']) : '';
     $class_galleryw = $scfw_settings['scfw_class_galleryw'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_galleryw']) : '';
-    $class_cbefore = $scfw_settings['scfw_class_cbefore'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_cbefore']) : '';
-    $class_cafter = $scfw_settings['scfw_class_cafter'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_cafter']) : '';
-    $class_cunder = $scfw_settings['scfw_class_cunder'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_cunder']) : '';
+    $class_cabove   = $scfw_settings['scfw_class_cabove'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_cabove']) : '';
+    $class_cunder   = $scfw_settings['scfw_class_cunder'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_cunder']) : '';
+    $class_cbefore  = $scfw_settings['scfw_class_cbefore'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_cbefore']) : '';
+    $class_cafter   = $scfw_settings['scfw_class_cafter'] ? ' ' . str_replace('.', '', $scfw_settings['scfw_class_cafter']) : '';
 
     // Begin gallery output
     $ret .= "<div class=\"gallery" . $class_gallery . "\">\n";
@@ -150,11 +151,11 @@ function scfw_gallery_shortcode($null, $attr = array()) {
     $ret .= apply_filters('gallery_style', "<script type=\"text/javascript\">jQuery(function($) { $(\"#box-$id\").sexyCycle($js); });</script>\n");
 
     // Controls (prev)
-    if( $counter ){
-      $ret .= "<div id=\"counter-$id\" class=\"counter\"></div>";
+    if ($counter) {
+      $ret .= "  <div id=\"counter-$id\" class=\"counter\"></div>\n";
     }
-    if( $controls == 'before'){
-      $ret .= "<div class=\"controllers before" . $class_cbefore . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>   ";
+    if ($controls == 'above') {
+      $ret .= "  <div class=\"controllers above" . $class_cabove . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span><span id=\"next-$id\" class=\"next cursor\">" . $next . "</span></div>\n";
     }
     if ($controls == 'beforeafter') {
       $ret .= "  <div class=\"controllers before" . $class_cbefore . "\"><span id=\"prev-$id\" class=\"prev cursor\">" . $prev . "</span></div>\n";

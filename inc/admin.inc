@@ -119,8 +119,8 @@ $scfw_options['controls'] = array(
   "type" => "select",
   "options" => array(
     'none' => 0,
-    'Before Image' => 'before',
-    'Under Image' => 'under',
+    'Above image' => 'above',
+    'Under image' => 'under',
     'Before / After image' => 'beforeafter'
   ),
   "std" => 0
@@ -238,6 +238,22 @@ $scfw_options['class-2'] = array(
 );
 
 $scfw_options['class-3'] = array(
+  "name" => "<code>.controllers.above</code>",
+  "id" => $scfw_shortname . "_class_cabove",
+  "type" => "text",
+  "size" => 20,
+  "std" => ''
+);
+
+$scfw_options['class-4'] = array(
+  "name" => "<code>.controllers.under</code>",
+  "id" => $scfw_shortname . "_class_cunder",
+  "type" => "text",
+  "size" => 20,
+  "std" => ''
+);
+
+$scfw_options['class-5'] = array(
   "name" => "<code>.controllers.before</code>",
   "id" => $scfw_shortname . "_class_cbefore",
   "type" => "text",
@@ -245,17 +261,9 @@ $scfw_options['class-3'] = array(
   "std" => ''
 );
 
-$scfw_options['class-4'] = array(
+$scfw_options['class-6'] = array(
   "name" => "<code>.controllers.after</code>",
   "id" => $scfw_shortname . "_class_cafter",
-  "type" => "text",
-  "size" => 20,
-  "std" => ''
-);
-
-$scfw_options['class-5'] = array(
-  "name" => "<code>.controllers.under</code>",
-  "id" => $scfw_shortname . "_class_cunder",
   "type" => "text",
   "size" => 20,
   "std" => ''
