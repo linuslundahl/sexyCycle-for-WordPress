@@ -42,7 +42,7 @@
             _cn = 0;
         var _th = $(".sexyCycle-content img:eq(0)", sexyCycle).height();    
 
-        $(sexyCycle).height(_th);                                           //**Sets the height of the Gallery to the height of the first image**
+        $(sexyCycle).height(_th);                                           //Sets the height of the Gallery to the height of the first image
 
         $('.sexycycleimgtempload').remove();                                //Now the temporary span has been removed with nothing ever being done to it ?!?!?
         
@@ -67,7 +67,7 @@
         if( $('#counter').length > 0 ){
             $('#counter').html("<span style='counter-text'>"+ (count+1) +" of "+ _t +"</span>");
         }
-        
+        //Another set of temporary spans that I'm not sure why they exist
         $('<span class="sexyCycleTempf" style="background: url(\'' + _tmp + '\'); float: left; width: ' + _tmpw + 'px; height: ' + _tmph + 'px; display: block"></span>').insertBefore($(".sexyCycle-content li:eq(0)", sexyCycle));
         $(".sexyCycleTempf", sexyCycle).css("display", "none");
 
@@ -77,7 +77,7 @@
         var _w = _p;
 
         $("li", sexyCycle).css("float", "left");
-        $(box).css('width', _w + 'px');
+        $(box).css('width', _w + 'px'); //Set the box surrounding the images to the width of the first image
 
         $(".sexyCycle-content", sexyCycle).animate({
             'left': '-=' + _left + 'px'
@@ -85,17 +85,17 @@
             duration: 0
         });
 
-        $(box).css("height", ($(sexyCycle).height() + $('.controllers', box).height() + 10) + "px");
+        $(box).css("height", ($(sexyCycle).height() + $('.controllers', box).height() + 10) + "px"); //Set the heightof the box to the height of the first image + the controllers + 10 (for potential captions)
 
         $(options.next).click(function () {
-            slide('+');
+            slide('+');  //Set the value of clicking the next button to "+"
         });
 
         $(options.prev).click(function () {
-            slide('-');
+            slide('-');  //Set the value of clicking the prev button to "-"
         });
 
-        if (options.imgclick) {
+        if (options.imgclick) {     //If the user selected the option in the admin to have onclick image progression, enable it here
           $(sexyCycle).click(function () {
               slide('+');
           }); 
@@ -124,11 +124,11 @@
             if (click == true) {
 
                 click = false;
-
+                //Clicking on next and prev, increments and decrements (respectively) the value of slideto by the width of the next or previous (respectively) image
                 if (_e == "-") {
                     slideto = "+=";
                     _cn = count - 1;
-                    _p = $(".sexyCycle-content img:eq(" + (_cn) + ")", sexyCycle).width();
+                    _p = $(".sexyCycle-content img:eq(" + (_cn ) + ")", sexyCycle).width();
                 } else {
                     slideto = "-=";
                     _cn = count + 1;
@@ -138,7 +138,7 @@
                 if (_cn - 1 < _t - 1 && _cn - 1 >= -1) {
 
                     _w = $(".sexyCycle-content img:eq(" + _cn + ")", sexyCycle).width();
-                    _h = $(".sexyCycle-content img:eq(" + _cn + ")", sexyCycle).height();
+                    _h = $(".sexyCycle-content img:eq(" + _cn + ")", sexyCycle).height() + 10;
 
                     $(".sexyCycle-content", sexyCycle).animate({
                         'left': slideto + _p + 'px'
@@ -195,7 +195,7 @@
                         }
 
                         _w = $(".sexyCycle-content img:eq(" + count + ")", sexyCycle).width();
-                        _h = $(".sexyCycle-content img:eq(" + count + ")", sexyCycle).height();
+                        _h = $(".sexyCycle-content img:eq(" + count + ")", sexyCycle).height() + 15;
                         
                         $(box).animate({
                             'width': _w + 'px',
