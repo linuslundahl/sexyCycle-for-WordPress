@@ -11,7 +11,7 @@ $scfw_options = array();
 
 // Build form
 $scfw_options['paragraph-1'] = array(
-  "value" => "<a href=\"http://suprb.com/apps/sexyCycle/\">sexyCycle jQuery plugin</a> created by <a href=\"http://suprb.com/\">Andreas Pihlstr&ouml;m</a>.<br />sexyCycle for WordPress created and maintained by <a href=\"http://unwise.se/\">Linus Lundahl</a>.<br />Contributions by <a href=\"http://thewebpreneur.com/\">Nick O'Neill</a><br /><br />",
+  "value" => "<a href=\"http://suprb.com/apps/sexyCycle/\">sexyCycle jQuery plugin</a> created by <a href=\"http://suprb.com/\">Andreas Pihlstr&ouml;m</a>.<br />sexyCycle for WordPress created and maintained by <a href=\"http://unwise.se/\">Linus Lundahl</a>.<br />Contributions by <a href=\"http://thewebpreneur.com/\">Nick O'Neill</a>.<br /><br />",
   "type" => "paragraph"
 );
 
@@ -188,7 +188,7 @@ $scfw_options['caption'] = array(
 );
 
 $scfw_options['counter'] = array(
-  "name" => "Slide Counter",
+  "name" => "Slide counter",
   "desc" => "If checked, slideshow will include a slide counter.",
   "id" => $scfw_shortname ."_counter",
   "type" => "checkbox",

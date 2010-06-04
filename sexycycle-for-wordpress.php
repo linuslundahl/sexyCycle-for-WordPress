@@ -66,6 +66,7 @@ function scfw_gallery_shortcode($null, $attr = array()) {
     'speed'         => $scfw_settings['scfw_speed'] ? $scfw_settings['scfw_speed'] : '400',
     'interval'      => $scfw_settings['scfw_interval'] ? $scfw_settings['scfw_interval'] : '',
     'caption'       => $scfw_settings['scfw_caption'] ? $scfw_settings['scfw_caption'] : '0',
+    'counter'       => $scfw_settings['scfw_counter'] ? $scfw_settings['scfw_counter'] : '0',
     'cycle'         => $scfw_settings['scfw_cycle'] ? $scfw_settings['scfw_cycle'] : NULL,
     'imgclick'      => $scfw_settings['scfw_imgclick'] ? $scfw_settings['scfw_imgclick'] : '0'
   ), $attr));

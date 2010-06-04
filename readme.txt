@@ -43,23 +43,24 @@ This setting would use small images and the animation easeInExpo instead of the 
 * __Animation:__ `animation=` "easeInQuad", "easeOutQuad", "easeInOutQuad", "easeInCubic", "easeOutCubic", "easeInOutCubic", "easeInQuart", "easeOutQuart", "easeInOutQuart", "easeInQuint", "easeOutQuint", "easeInOutQuint", "easeInSine", "easeOutSine", "easeInOutSine", "easeInExpo", "easeOutExpo", "easeInOutExpo", "easeInCirc", "easeOutCirc", "easeInOutCirc", "easeInElastic", "easeOutElastic", "easeInOutElastic", "easeInBack", "easeOutBack", "easeInOutBack", "easeInBounce", "easeOutBounce", "easeInOutBounce"
 * __Animation speed:__ `speed=` "int" (milliseconds)
 * __Auto cycle speed:__ `interval=` "int" (milliseconds)
-* __Use controls:__ `controls=` "0", "under", "beforeafter"
+* __Use controls:__ `controls=` "0", "before", "under", "beforeafter"
 * __Image click:__ `imgclick=` "0", "image", "nothing" (0 = swap to next image)
 * __Previous text:__ `prev=` "string"
 * __Next text:__ `next=` "string"
 * __Use stop:__  `controls_stop=` "boolean" (0/1)
 * __Stop text:__ `stop=` "string"
 * __Use caption:__ `caption=` "0", "caption", "desc"
+* __Show counter:__ `counter=` "boolean" (0/1)
 * __Disable cycle at end:__ `cycle=` "boolean" (0/1)
 
 == Frequently Asked Questions ==
 
-No FAQ available at the moment.
+__Does sexyCycle support video?__  
+No, there is no video support.
 
 = Known Issues =
 
 * Captions disappear and reappear when cycling restarts.
-* Using images with different heights can make for some interesting results. (Always try to use same height, different width is okay though)
 
 == Screenshots ==
 
