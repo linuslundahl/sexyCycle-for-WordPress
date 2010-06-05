@@ -11,17 +11,26 @@ $scfw_options = array();
 
 // Build form
 $scfw_options['paragraph-1'] = array(
-  "value" => "<a href=\"http://suprb.com/apps/sexyCycle/\">sexyCycle jQuery plugin</a> created by <a href=\"http://suprb.com/\">Andreas Pihlstr&ouml;m</a>.<br />sexyCycle for WordPress created and maintained by <a href=\"http://unwise.se/\">Linus Lundahl</a>.<br />Contributions by <a href=\"http://thewebpreneur.com/\">Nick O'Neill</a>.<br /><br />",
+  "value" => "sexyCycle for WordPress created and maintained by <a href=\"http://unwise.se/\">Linus Lundahl</a>.<br />
+              <a href=\"http://suprb.com/apps/sexyCycle/\">sexyCycle jQuery plugin</a> created by <a href=\"http://suprb.com/\">Andreas Pihlstr&ouml;m</a>.<br />
+              Contributions by <a href=\"http://thewebpreneur.com/\">Nick O'Neill</a>.<br />",
   "type" => "paragraph"
 );
 
-$scfw_options['title-2'] = array(
+$scfw_options['title-1'] = array(
   "name" => "Instructions",
   "type" => "title"
 );
 
 $scfw_options['paragraph-2'] = array(
-  "value" => "You can choose to override the default <strong>[gallery]</strong> shortcode, or you can use the shortcode <strong>[sexy-gallery]</strong>, and still have the regular galleries enabled. Galleries are created the same way <em>(Add an image -> Gallery)</em> even if you use the default <strong>[gallery]</strong> shortcode or the <strong>[sexy-gallery]</strong> shortcode, but pasting a <strong>[sexy-gallery]</strong> shortcode must be done manually in HTML mode.<br />If the default shortcode is overriden, these settings affects <strong>all galleries</strong> in <strong>all posts and pages</strong>, though custom settings can be added with <a href=\"http://wordpress.org/extend/plugins/sexycycle-for-wordpress/installation/\">shortcode variables</a>.<br />Pasting both shortcodes in a single post or page is not recommended.",
+  "value" => "You can choose to override the default <strong>[gallery]</strong> shortcode, or you can use the shortcode <strong>[sexy-gallery]</strong>, and still have the regular galleries enabled.
+              Galleries are created the same way <em>(Add an image -> Gallery)</em> even if you use the default <strong>[gallery]</strong> shortcode or the <strong>[sexy-gallery]</strong> shortcode,
+              but pasting a <strong>[sexy-gallery]</strong> shortcode must be done manually in HTML mode.<br /><br />
+              If the default shortcode is overriden, these settings affects <strong>all galleries</strong>
+              in <strong>all posts and pages</strong>, though custom settings can be added with <a href=\"http://wordpress.org/extend/plugins/sexycycle-for-wordpress/installation/\">shortcode variables</a>.<br />
+              Pasting both shortcodes in a single post or page is not recommended, but it works if you don't override the default shortcode.<br /><br />
+              When images are linked to the original image, this plugin works together with plugins such as <a href=\"http://wordpress.org/extend/plugins/shadowbox-js/\">Shadowbox JS</a> and
+              <a href=\"http://wordpress.org/extend/plugins/jquery-lightbox-balupton-edition/\">jQuery Lightbox</a>. It might also work with other similar plugins, but there are no guarantees.",
   "type" => "paragraph"
 );
 
