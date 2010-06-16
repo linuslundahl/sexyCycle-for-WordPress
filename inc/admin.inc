@@ -59,7 +59,8 @@ $scfw_options['image-size'] = array(
   "options" => array(
     'thumbnail' => 'thumbnail',
     'medium' => 'medium',
-    'large' => 'large'
+    'large' => 'large',
+    'full' => 'full'
   ),
   "std" => 'large'
 );

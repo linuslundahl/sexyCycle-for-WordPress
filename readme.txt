@@ -53,6 +53,8 @@ This setting would use small images and the animation easeInExpo instead of the 
 * __Show counter:__ `counter=` "boolean" (0/1)
 * __Disable cycle at end:__ `cycle=` "boolean" (0/1)
 
+Defaults that are also available: exclude, orderby, size
+
 == Frequently Asked Questions ==
 
 __Does sexyCycle support video?__  
@@ -67,6 +69,10 @@ No, there is no video support.
 1. The settings page.
 
 == Changelog ==
+
+= 0.4.2 =
+Added possibility to use full image in gallery.  
+Added possibility to exclude images in shortcode.
 
 = 0.4.1 =
 Minor bugfixes.

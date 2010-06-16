@@ -55,6 +55,7 @@ function scfw_gallery_shortcode($null, $attr = array()) {
     'itemtag'       => 'ul',
     'icontag'       => 'li',
     'captiontag'    => 'span',
+    'exclude'       => array(),
     'size'          => $scfw_settings['scfw_img_size'] ? $scfw_settings['scfw_img_size'] : 'large',
     'prev'          => $scfw_settings['scfw_prev'] ? stripslashes($scfw_settings['scfw_prev']) : 'Prev',
     'counter'       => $scfw_settings['scfw_counter'] ? $scfw_settings['scfw_counter'] : NULL,
@@ -80,6 +81,7 @@ function scfw_gallery_shortcode($null, $attr = array()) {
     'post_mime_type'  => 'image',
     'order'           => $order,
     'orderby'         => $orderby,
+    'exclude'         => $exclude
   ));
 
   if (empty($attachments)) {
