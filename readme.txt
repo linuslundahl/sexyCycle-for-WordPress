@@ -4,7 +4,7 @@ Donate link:
 Tags: simple, image, gallery, slideshow, jQuery
 Requires at least: 2.9
 Tested up to: 3.0
-Stable tag: 0.4.1
+Stable tag: 0.4.2
 
 sexyCycle is a lightweight yet very sleek jQuery plugin for making sliding image galleries. This plugin adds that functionality to WP galleries.
 

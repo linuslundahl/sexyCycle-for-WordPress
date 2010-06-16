@@ -25,14 +25,14 @@
             imgclick: true,
             counter: null
         };
-        
+
         var options = $.extend(defaults, options);
         var box = this;
         var click = true;
         var sexyCycle = $(".sexyCycle-wrap", this);
         var count = options.start;
         var totalw = $(box).width();
-        
+
         //No idea what this block of code is accomplishing
         var img = $(".sexyCycle-content img:eq(0)", sexyCycle).attr('src'); //This sets img to the source of the first image
         $('body').append('<span class="sexycycleimgtempload"></span>');     //Creates a temporary span 
@@ -41,12 +41,12 @@
         var _tmph = 0,
             _left = 0,
             _cn = 0;
-        var _th = $(".sexyCycle-content img:eq(0)", sexyCycle).height();    
+        var _th = $(".sexyCycle-content img:eq(0)", sexyCycle).height();
 
         $(sexyCycle).height(_th);                                           //Sets the height of the Gallery to the height of the first image
 
         $('.sexycycleimgtempload').remove();                                //Now the temporary span has been removed with nothing ever being done to it ?!?!?
-        
+
         var _t = $(".sexyCycle-content", sexyCycle).children().size();                      //This checks how many images are part of this gallery, I assume _t stands for "Total"
         var _p = $(".sexyCycle-content img:eq(" + options.start + ")", sexyCycle).width();  //This is the width of the starting image
         var _f = $(".sexyCycle-content img:eq(0)", sexyCycle);                              //This is setting a reference to the first image in the gallery
@@ -63,7 +63,7 @@
         for (_lc = 0; _lc < options.start; _lc++) {
             _left += $(".sexyCycle-content img:eq(" + _lc + ")", sexyCycle).width();
         }
-        
+
         //Initiate the counter 
         if( $(options.counter).length > 0 ){
             $(options.counter).html("<span style='counter-text'>"+ (count+1) +" of "+ _t +"</span>");
@@ -86,7 +86,18 @@
             duration: 0
         });
 
-        $(box).css("height", ($(sexyCycle).height() + $('.controllers', box).height() + 10) + "px"); //Set the heightof the box to the height of the first image + the controllers + 10 (for potential captions)
+        var _cap_height = 0;
+        if( $(".sexyCycle-content li:eq(0)", sexyCycle).find('span').height() != null ) // If there's a caption
+            _cap_height = $(".sexyCycle-content li:eq(0)", sexyCycle).find('span').height(); 
+
+        //Set the box height
+        var _h = $(sexyCycle).height() + $('.controllers', box).height() + _cap_height;
+        $(box).css("height", (_h + "px")); //Set the heightof the box to the height of the first image + the controllers + caption height
+        if( _cap_height > 0 ){ //If the caption height > 0, resize the box
+            $(box).css('height', _h + 'px');
+            $(".sexyCycle-wrap", sexyCycle).css("height", _h);
+            $(".sexyCycle-content li .gallery-caption", sexyCycle).css("top", _th + 'px'); //Reposition to the height of 1st image
+        }
 
         $(options.next).click(function () {
             slide('+');  //Set the value of clicking the next button to "+"
@@ -99,7 +110,7 @@
         if (options.imgclick) {     //If the user selected the option in the admin to have onclick image progression, enable it here
           $(sexyCycle).click(function () {
               slide('+');
-          }); 
+          });
         }
 
         if (options.interval != false) {
@@ -121,7 +132,7 @@
         }
 
         function slide(_e) {
-            
+
             if (click == true) {
 
                 click = false;
@@ -139,8 +150,14 @@
                 if (_cn - 1 < _t - 1 && _cn - 1 >= -1) {
 
                     _w = $(".sexyCycle-content img:eq(" + _cn + ")", sexyCycle).width();
-                    _h = $(".sexyCycle-content img:eq(" + _cn + ")", sexyCycle).height() + 10;
-
+                    _h = $(".sexyCycle-content img:eq(" + _cn + ")", sexyCycle).height();
+                    _img_h = _h;
+                    _cap_height = $(".sexyCycle-content li:eq("+_cn+")", sexyCycle).find('span').height(); //Find the height of the caption
+                    if(_cap_height != null){ //If there is a caption, make sure that the box is resized for it to fit and it's properly positioned
+                        _h += _cap_height;
+                        $(".sexyCycle-wrap", sexyCycle).css("height", _h);
+                        $(".sexyCycle-content li .gallery-caption", sexyCycle).css("top", _img_h + 'px');
+                    }
                     $(".sexyCycle-content", sexyCycle).animate({
                         'left': slideto + _p + 'px'
                     }, {
@@ -196,8 +213,15 @@
                         }
 
                         _w = $(".sexyCycle-content img:eq(" + count + ")", sexyCycle).width();
-                        _h = $(".sexyCycle-content img:eq(" + count + ")", sexyCycle).height() + 10;
-                        
+                        _h = $(".sexyCycle-content img:eq(" + count + ")", sexyCycle).height();
+                        _img_h = _h;
+                        _cap_height = $(".sexyCycle-content li:eq("+_cn+")", sexyCycle).find('span').height(); //Find the height of the caption
+                        if(_cap_height != null){ //If there is a caption, make sure that the box is resized for it to fit and it's properly positioned
+                            _h += _cap_height;
+                            $(".sexyCycle-wrap", sexyCycle).css("height", _h);
+                            $(".sexyCycle-content li .gallery-caption", sexyCycle).css("top", _img_h + 'px');
+                        }
+
                         $(box).animate({
                             'width': _w + 'px',
                             'height': _h + 'px'

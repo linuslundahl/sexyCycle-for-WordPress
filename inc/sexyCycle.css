@@ -11,11 +11,11 @@
 ul.sexyCycle-content  { list-style: none; margin: 0 !important; padding: 0 !important; width: 99999999; position: absolute; width: auto !important; }
 .sexyCycle { position: relative; overflow: hidden; }
 .sexyCycle-wrap { position: relative; width: 99999px; }
-.sexyCycle-content { width: 99999; position: absolute; overflow: hidden; text-indent: 0 !important; list-style: none !important; list-style-type: none !important; list-style- margin: 0 !important; padding: 0 !important; }
+.sexyCycle-content { width: 99999; position: absolute; /*overflow: hidden;*/ text-indent: 0 !important; list-style: none !important; list-style-type: none !important; margin: 0 !important; padding: 0 !important; }
 .sexyCycle-content li { display: block; margin: 0 !important; padding: 0 !important; position: relative; }
 .sexyCycle-content li:before { content: "" !important; }
 .sexyCycle-content li img { border: none !important; float: left; margin: 0 !important; padding: 0 !important; }
-.sexyCycle-content li .gallery-caption { bottom: 0; left: 0; margin: 0 !important; padding: 3px 0 !important; position: absolute; text-indent: 3px; width: 100%; }
-.cursor { cursor: pointer; }
+.sexyCycle-content li .gallery-caption {  /*bottom: 0;*/ left: 0; margin: 0 !important;position: absolute;width: 100%; padding: 3px 0 !important; /*text-indent:3px;*/ }
+.cursor { cursor: pointer; } 
 .sexyCycle .controllers { width: 100%; }
 .sexyCycle .controllers .prev { border-right: 2px solid #ccc; margin: 0 10px 0 0; padding: 0 10px 0 0; }
