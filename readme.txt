@@ -1,10 +1,10 @@
 === sexyCycle for WordPress ===
 Contributors: linuslundahl
-Donate link:
+Donate link: https://flattr.com/thing/71640/sexyCycle-for-WordPress
 Tags: simple, image, gallery, slideshow, jQuery
 Requires at least: 2.9
 Tested up to: 3.0
-Stable tag: 0.4.2
+Stable tag: 0.4.3
 
 sexyCycle is a lightweight yet very sleek jQuery plugin for making sliding image galleries. This plugin adds that functionality to WP galleries.
 
@@ -16,10 +16,10 @@ This WordPress plugin makes it possible to add this image sliding functionality 
 
 It's now possible to use per gallery settings, see the [Installation page](http://wordpress.org/extend/plugins/sexycycle-for-wordpress/installation/) for documentation.
 
-Examples of sexyCycle in action can be seen at [sexyCycle image jQuery plugin](http://www.suprb.com/apps/sexyCycle/). (These examples are not implemented in WordPress, but they show the functionality)
+An examples of sexyCycle in action can be seen at [sexyCycle for WordPress](http://unwise.se/sexycycle-for-wordpress), more examples can be found at [sexyCycle image jQuery plugin](http://www.suprb.com/apps/sexyCycle/). (These examples are not implemented in WordPress, but they show the functionality)
 
 sexyCycle for WordPress created and maintained by [Linus Lundahl](http://unwise.se/).  
-sexyCycle jQuery plugin created by [Andreas Pihlström](http://suprb.com/).
+sexyCycle jQuery plugin created by [Andreas Pihlström](http://suprb.com/).  
 Contributions by [Nick O'Neill](http://thewebpreneur.com/).
 
 == Installation ==
@@ -69,6 +69,9 @@ No, there is no video support.
 1. The settings page.
 
 == Changelog ==
+
+= 0.4.3 =
+Minor bugfixes.
 
 = 0.4.2 =
 Added possibility to use full image in gallery.  
