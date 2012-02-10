@@ -4,7 +4,7 @@
 Plugin Name: sexyCycle for WordPress
 Plugin URI: http://unwise.se/sexycycle-for-wordpress/
 Description: Uses <a href="http://suprb.com/apps/sexyCycle/">sexyCycle jQuery plugin</a> to cycle through gallery images. (sexyCycle created by <a href="http://suprb.com/">Andreas Pihlström</a>)
-Version: 0.4.3
+Version: 0.4.5
 Author: Linus Lundahl
 Author URI: http://unwise.se
 */
@@ -17,22 +17,26 @@ if (!defined('SCFW_PLUGIN_BASENAME')) {
 	define('SCFW_PLUGIN_BASENAME', plugin_basename(__FILE__));
 }
 
-if (is_admin()) {
-	add_action('admin_menu', 'scfw_menu', -999);
-}
-else {
-	add_action('wp_head', 'scfw_add_css');
-	if (!$scfw_settings['scfw_jquery']) {
-		wp_deregister_script('jquery');
-		wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', false, '1.4+', false);
+function scfw_load_styles() {
+	if (is_admin()) {
+		add_action('admin_menu', 'scfw_menu', -999);
 	}
-	wp_enqueue_script('easing', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.easing-packed.js", array('jquery'), '1.3', false);
-	wp_enqueue_script('sexycycle', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.sexyCycle-packed.js", array('jquery', 'easing'), '0.3', false);
-	if ($scfw_settings['scfw_override']) {
-		add_filter('post_gallery', 'scfw_gallery_shortcode', 10, 2);
+	else {
+		add_action('wp_head', 'scfw_add_css');
+		if (!$scfw_settings['scfw_jquery']) {
+			wp_deregister_script('jquery');
+			wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', false, '1.4+', false);
+		}
+		wp_enqueue_script('easing', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.easing-packed.js", array('jquery'), '1.3', false);
+		wp_enqueue_script('sexycycle', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . "/inc/jquery.sexyCycle-packed.js", array('jquery', 'easing'), '0.3', false);
+		if ($scfw_settings['scfw_override']) {
+			add_filter('post_gallery', 'scfw_gallery_shortcode', 10, 2);
+		}
+		add_shortcode('sexy-gallery', 'scfw_sexy_gallery_shortcode');
 	}
-	add_shortcode('sexy-gallery', 'scfw_sexy_gallery_shortcode');
 }
+add_action('init', 'scfw_load_styles');
+
 
 // Add CSS
 function scfw_add_css() {

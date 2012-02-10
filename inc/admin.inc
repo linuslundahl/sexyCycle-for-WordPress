@@ -338,8 +338,6 @@ function scfw_options() {
 		}
 
 		update_option($scfw_shortname . '_settings', $values);
-
-		echo '<div id="message" class="updated fade"><p><strong>' . __('Options saved.') . '</strong></p></div>';
 	}
 
 	$scfw_settings = get_settings('scfw_settings');
@@ -356,6 +354,9 @@ function scfw_options() {
 		unset($scfw_options['controls_stop']);
 		unset($scfw_options['stop']);
 	}
+
+	if ( $_REQUEST['save'] ) echo '<div id="message" class="updated fade"><p><strong>' . __( 'Options saved.' ) . '</strong></p></div>';
+	if ( $_REQUEST['reset'] ) echo '<div id="message" class="updated fade"><p><strong>' . __( 'Options restored.' ) . '</strong></p></div>';
 ?>
 
 <div class="wrap">
